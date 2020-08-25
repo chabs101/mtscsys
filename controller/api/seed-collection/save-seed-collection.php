@@ -39,10 +39,10 @@ if(trim($_POST['seed_collection_id']) == "") {
 									'".($_POST['coppice'] ?? "")."',
 									'".($_POST['team'] ?? "")."',
 									'".($_POST['description'] ?? "")."',
-									'".($_POST['seed_weight'] ?? "")."',
+									'".(!empty($_POST['seed_weight']) ? $_POST['seed_weight'] :  0)."',
 									'".($_POST['viab'] ?? "")."',
 									'".($_POST['collect_as_bulk'] ?? "")."',
-									'".($_POST['individuals'] ?? "")."',
+									'".(!empty($_POST['individuals']) ? $_POST['individuals'] : 0)."',
 									'".($_POST['seed_date'] ?? "")."',
 									NOW()) ");
 
@@ -90,10 +90,10 @@ if(trim($_POST['seed_collection_id']) == "") {
 									team='".($_POST['team'] ?? "")."',
 									seed_date='".($_POST['seed_date'] ?? "")."',
 									description='".($_POST['description'] ?? "")."',
-									seed_weight='".($_POST['seed_weight'] ?? "")."',
+									seed_weight='".(!empty($_POST['seed_weight']) ? $_POST['seed_weight'] :  0)."',
 									viab='".($_POST['viab'] ?? "")."',
 									collect_as_bulk='".($_POST['collect_as_bulk'] ?? "")."',
-									individuals='".($_POST['individuals'] ?? "")."',
+									individuals='".(!empty($_POST['individuals']) ? $_POST['individuals'] : 0)."',
 									updated_at=NOW()											
 									WHERE seed_collection_id='".$_POST['seed_collection_id']."' ");
 
