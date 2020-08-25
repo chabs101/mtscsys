@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+    
+RewriteEngine On
+
+ErrorDocument 404 /404.php
+ErrorDocument 403 http://%{HTTP_HOST}/mtscsys/404 
+ErrorDocument 500 http://%{HTTP_HOST}/mtscsys/404 
+
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ %{REQUEST_URI}.php [L]
+</IfModule>
+
