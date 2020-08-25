@@ -120,6 +120,9 @@
                     owner :{
                         presence : {allowEmpty:false}
                     },
+                    date_assess :{
+                        presence : {allowEmpty:false}
+                    },
                     contact_no :{
                         presence : {allowEmpty:false},
                         numericality : {

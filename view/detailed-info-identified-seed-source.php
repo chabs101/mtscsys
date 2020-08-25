@@ -141,7 +141,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="form-group">
-                        <label class="control-label">Date Assessed :&nbsp;</label>
+                        <label class="control-label">Date Assessed :<b class="color-red">*</b>&nbsp;</label>
                         <input class="form-control" type="date" id="date_assess" name="date_assess" />
                     </div>
                 </div>
