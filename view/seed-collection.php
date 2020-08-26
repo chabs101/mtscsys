@@ -361,7 +361,7 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label class="control-label">Seed Weight :&nbsp;</label>
-                        <input class="form-control" type="text" id="seed_weight" name="seed_weight" />
+                        <input class="form-control" type="number" id="seed_weight" name="seed_weight" />
                     </div>
                 </div>
 
