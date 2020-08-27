@@ -17,6 +17,7 @@
     var prevPageBtn = document.querySelector("#btn-prev");
     // var pattern = "00000";
     // (pattern + data.seed_collection_id).slice(-(pattern.length))
+    var submitted_seed_collection = false;
     dataSeedCollection = {};
     tobeDeleteSeedAssocData = [];
     tobeDeleteSeedOtherData = [];
@@ -609,6 +610,12 @@
                 }
                 console.log(resultValidate);
 
+                if(submitted_seed_collection) {
+                    console.log("already submitted please wait");
+                    return;
+                }
+
+                submitted_seed_collection = true;
 
                 fetch('../controller/api/seed-collection/save-seed-collection.php', {
                    method: 'POST',
@@ -633,8 +640,13 @@
                             el.classList.remove("is-invalid");
                         });
                         seedcollectionModal.dispose();
+                        console.log("submitted successfully");
+                        console.log("submitted status false");
+                        submitted_seed_collection = false;
                         return;
                      }
+                        console.log("submitted status false");
+                     submitted_seed_collection = false;
                 });
 
             });
