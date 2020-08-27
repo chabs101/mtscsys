@@ -32,7 +32,7 @@
                                             <div class="col-md-8">
                                                 <label class="control-label"> PRESS [<b>ALT + 1</b>] TO FOCUS SEARCH BAR</label>
                                                 <div class="input-group">
-                                                    <input class="form-control" type="text" placeholder="Search id/seed lot no/botanical name" id="search-input"/>
+                                                    <input class="form-control" type="text" placeholder="Search barcode/seed lot no/botanical name" id="search-input"/>
                                                     <div class="input-group-append">
                                                         <button class="btn btn-primary" id="search-btn" type="button"><i class="fas fa-search"></i></button>
                                                     </div>
