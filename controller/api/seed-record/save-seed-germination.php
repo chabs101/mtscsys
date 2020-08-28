@@ -24,16 +24,16 @@ if(isset($_POST['method']) || isset($_POST['seed_from']) || isset($_POST['seed_t
 											VALUES (
 											'".$_POST['seed_record_id'][$i]."',	
 											'".($_POST['method'][$i] ?? "")."',	
-											'".($_POST['seed_from'][$i] ?? "")."',	
-											'".($_POST['seed_to'][$i] ?? "")."',	
+											'".(!empty($_POST['seed_from'][$i]) ? $_POST['seed_from'][$i] : "00-00-0000")."',	
+											'".(!empty($_POST['seed_to'][$i]) ? $_POST['seed_to'][$i] : "00-00-0000")."',	
 											'".($_POST['viab'][$i] ?? "")."',
 											NOW()) ");
 		}else {
 			$result = $db->rawQuery("UPDATE seed_record_germination SET 
 											seed_record_id='".$_POST['seed_record_id'][$i]."',	
 											method='".($_POST['method'][$i] ?? "")."',	
-											seed_from='".($_POST['seed_from'][$i] ?? "")."',	
-											seed_to='".($_POST['seed_to'][$i] ?? "")."',	
+											seed_from='".(!empty($_POST['seed_from'][$i]) ? $_POST['seed_from'][$i] : "00-00-0000")."',	
+											seed_to='".(!empty($_POST['seed_to'][$i]) ? $_POST['seed_to'][$i] : "00-00-0000")."',	
 											viab='".($_POST['viab'][$i] ?? "")."',
 											updated_at=NOW()											
 											WHERE seed_germination_id='".$_POST['seed_germination_id'][$i]."' ");

@@ -24,7 +24,7 @@ if(isset($_POST['consignee_date']) || isset($_POST['file_no']) || isset($_POST['
 											VALUES (
 											'".$_POST['seed_record_id'][$i]."',	
 											'".($_POST['file_no'][$i] ?? "")."',	
-											'".($_POST['consignee_date'][$i] ?? "")."',	
+											'".(!empty($_POST['consignee_date'][$i]) ? $_POST['consignee_date'][$i] : "00-00-0000")."',	
 											'".($_POST['consignee'][$i] ?? "")."',	
 											'".($_POST['amount_sent'][$i] ?? "")."',	
 											'".($_POST['amount_left'][$i] ?? "")."',
@@ -33,7 +33,7 @@ if(isset($_POST['consignee_date']) || isset($_POST['file_no']) || isset($_POST['
 			$result = $db->rawQuery("UPDATE seed_record_consignee SET 
 											seed_record_id='".$_POST['seed_record_id'][$i]."',	
 											file_no='".($_POST['file_no'][$i] ?? "")."',	
-											consignee_date='".($_POST['consignee_date'][$i] ?? "")."',	
+											consignee_date='".(!empty($_POST['consignee_date'][$i]) ? $_POST['consignee_date'][$i] : "00-00-0000")."',	
 											consignee='".($_POST['consignee'][$i] ?? "")."',	
 											amount_sent='".($_POST['amount_sent'][$i] ?? "")."',	
 											amount_left='".($_POST['amount_left'][$i] ?? "")."',
