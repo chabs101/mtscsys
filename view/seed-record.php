@@ -232,7 +232,7 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label class="control-label">Total Height <b class="color-red">*</b>:&nbsp;</label>
-                        <input class="form-control" type="text" id="total_height" name="total_height"/>
+                        <input class="form-control" type="number" min="0" id="total_height" name="total_height"/>
                     </div>
                 </div>
 
