@@ -78,9 +78,11 @@
 			<label style="font-size: 18px;"><b>DETAILED INFORMATION ON IDETIFIED SEED SOURCE </b></label><br>
 		</div>
 	</div>
+	<?php $title = "DETAILED INFORMATION ON IDETIFIED SEED SOURCE";?>
+	<?php include 'default_title.php'; ?><br><br>
 
 
-	<div style="width:100%;margin-top:35px;page-break-inside:auto;">
+	<div style="width:100%;margin-top:55px;page-break-inside:auto;">
 
 		<table class="tos">
 			<tr>

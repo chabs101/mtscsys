@@ -72,16 +72,11 @@
 	</style>
 </head>
 <body>
-
-	<div style="width: 100%;position:absolute;height:160px;">
-		<div style="text-align: center;margin-top:10px;">
-			<label style="font-size: 18px;"><b>ASSESSMENT TABLE SPECIES LOCATION OF SELECTED TREES CY 
-							<?= $_SESSION['data']['tree_assessment_result'][0]['cy'] ?? "n/a"?></b></label><br>
-		</div>
-	</div>
+	<?php $title = "ASSESSMENT TABLE SPECIES LOCATION OF SELECTED TREES CY ".($_SESSION['data']['tree_assessment_result'][0]['cy'] ?? "n/a");?>
+	<?php include 'default_title.php'; ?><br><br>
 
 
-	<div style="width:100%;margin-top:35px;page-break-inside:auto;">
+	<div style="width:100%;margin-top:55px;page-break-inside:auto;">
 
 		<table class="tos">
 			<tr>

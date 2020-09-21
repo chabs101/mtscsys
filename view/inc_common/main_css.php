@@ -6,6 +6,7 @@
         <link href="../assets/css/styles.css" rel="stylesheet" />
         <link href="../assets/css/auto-complete.css" rel="stylesheet" />
         <link href="../assets/css/toastr.min.css" rel="stylesheet" />
+        <link href="../assets/css/animate.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../assets/css/fontawesome/css/all.css"/>
 
         <style>

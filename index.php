@@ -18,7 +18,30 @@
         <meta name="author" content="" />
         <title>Login | <?php include('./view/inc_common/title_name.php');?></title>
         <link href="./assets/css/styles.css" type="text/css" rel="stylesheet" />
+        <link href="./assets/css/animate.css" rel="stylesheet" />
         <link rel="stylesheet" href="./assets/css/fontawesome/css/all.css"/>
+        <style>
+            .bg-secondary {
+                background:linear-gradient(#0000008f,#007bff63), url(./assets/img/bg.jpeg) !important;
+                background-repeat: no-repeat !important;
+                background-position: top !important;
+                background-size: 100%, 100% !important;
+            }
+
+            .bg-light {
+                background-color: rgb(6 6 6 / 72%) !important;
+                color:white !important;
+            }
+
+            .bg-light .text-muted {
+                color: white !important;
+            }
+
+            .card { 
+                background-color: rgb(255 255 255 / 92%) !important;
+            }
+
+        </style>
     </head>
     <body class="bg-secondary">
         <div id="layoutAuthentication">
@@ -27,9 +50,9 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5 animate__animated animate__pulse">
                                     <div class="card-header">
-                                        <h3 class="text-center font-weight-light my-4">LOGIN</h3>
+                                        <h3 class="text-center font-weight-light my-4"><b>MTSC Seed Tracker</b></h3>
                                             <h5 style="color:red;" id="invalid_credentials">Invalid Username or Password.</h5>
                                         </div>
                                     <div class="card-body">
@@ -63,6 +86,8 @@
         </div>
 
         <script>
+            document.querySelector("footer").classList.remove("py-4");
+            document.querySelector("footer").classList.add("py-1");
             var loginBtn = document.querySelector('#login-btn');
             var formData = {};
             var invalid_credentials = document.querySelector("#invalid_credentials");			

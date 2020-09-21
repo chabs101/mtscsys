@@ -93,15 +93,17 @@
 	</style>
 </head>
 <body>
-
+<!-- 
 	<div style="width: 100%;position:absolute;height:160px;">
 		<div style="text-align: center;margin-top:10px;">
 			<label style="font-size: 18px;"><b>SEED COLLECTION DATA SHEET</b></label><br>
 		</div>
-	</div>
+	</div> -->
+	<?php $title = "SEED COLLECTION DATA SHEET";?>
+	<?php include 'default_title.php'; ?><br><br>
 
 
-	<div style="width:100%;margin-top:30px;page-break-inside:auto;">
+	<div style="width:100%;margin-top:55px;page-break-inside:auto;">
 
 		<table class="tStyle">
 			<tr>

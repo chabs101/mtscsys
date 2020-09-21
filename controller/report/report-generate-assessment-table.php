@@ -29,6 +29,7 @@ if(isset($_GET['search'])) {
 	$dompdf->load_html($content);
 	$dompdf->set_paper("legal","landscape");
 	$dompdf->render();
+	ob_end_clean();
 	$dompdf->stream("GENERATE ASSESSMENT TABLE SPECIES LOCATION OF SELECTED TREES.pdf",array("Attachment" => 0));
 }
 

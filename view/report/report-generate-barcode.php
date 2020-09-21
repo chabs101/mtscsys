@@ -100,18 +100,14 @@ $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
 			height:40px; 
 			width:150px;
 			margin-top: 5px;
-			padding: 5px 13px 0px 13px;
+			padding: 0px 13px 3px 13px;
 		}
 	</style>
 </head>
 <body>
 
-	<div style="width: 100%;position:absolute;height:160px;">
-		<div style="text-align: center;margin-left:50px;position:absolute;margin-top:40px;">
-			<label style="font-size: 18px;"><b>GENERATE BARCODE</b></label><br>
-		</div>
-		<img src="../../assets/img/mtsc_logo.jpeg" style="height:50px;width:auto;margin-right:50px;float:right;margin-top:20px;">
-	</div>
+	<?php $title = "GENERATE BARCODE");?>
+	<?php include 'default_title.php'; ?><br><br>
 
 
 	<div style="width:100%;margin-top:100px;page-break-inside:auto;">
@@ -119,25 +115,31 @@ $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
 			<?php 
 				$trCounter = 0;
 				for($i=0; $i<count($_SESSION['data']['ids']); $i++) { ?>
-			<?php $trCounter++;?>
+					<?php for($j=0; $j<$_SESSION['data']['qtyToPrint']; $j++) {?>
 
-				<div class="text-center" style="float:left;position: inline-block;border:1px solid #000;height: auto;width: 160px;font-size:15px;padding:3px;margin-left:15px;">
-				<span class="text-left"><?= $_SESSION['data']['seedName'][$i] ?? "n/a"?></span><br>
-				<img class="barcode" src="data:image/png;base64,<?= base64_encode($generator->getBarcode(( $_SESSION['data']['ids'][$i] ), $generator::TYPE_CODE_128))?>"/>
-				<br><span><?= $_SESSION['data']['ids'][$i] ?? "n/a"?></span>
-				</div>
-	
-				<?php if($trCounter == 4) {?>
-				<div style="position: inline-block;color:white;">
-					i am invisible
-				</div>
-				<!-- <?=$trCounter;?> -->
-			<?php 
-					$trCounter =0;
-				} 
-			?>
+						<?php 
+							$trCounter++;
+						?>
+
+						<div class="text-center" style="float:left;position: inline-block;border:1px solid #000;height: auto;width: 160px;font-size:15px;padding:3px;margin-left:15px;page-break-inside:avoid;">
+						<span class="text-left"><?= $_SESSION['data']['seedName'][$i] ?? "n/a"?></span><br>
+						<img class="barcode" src="data:image/png;base64,<?= base64_encode($generator->getBarcode(( $_SESSION['data']['ids'][$i] ), $generator::TYPE_CODE_128))?>"/>
+						<br><span><?= $_SESSION['data']['ids'][$i] ?? "n/a"?></span>
+						</div>
+			
+						<?php if($trCounter == 4) {?>
+						<div style="position: inline-block;color:white;font-size:10px;width: 100%;">
+							i am invisible
+						</div>
+						<?php 
+								$trCounter =0;
+							} 
+						?>
+
+					<?php } ?>
 
 			<?php } ?>			
+
 
 	</div>
 </body>

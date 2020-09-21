@@ -6343,7 +6343,23 @@ button.bg-dark:focus {
   display: inline-flex !important;
 }
 
+@media (min-width: 400px) {
+  .d-xs-none {
+    display: none !important;
+  }
+
+  .d-xs-show {
+    display: flex !important;
+  }
+}
+
 @media (min-width: 576px) {
+  .d-xs-show {
+    display: none !important;
+  }
+  .d-xs-none {
+    display: flex !important;
+  }
   .d-sm-none {
     display: none !important;
   }

@@ -33,9 +33,9 @@
                                                 <label>&nbsp;</label>
                                                 <div class="form-group">
                                                     <select class="form-control p-0" id="display_limit">
-                                                        <option value="All">All</option>
-                                                        <option value="50">50</option>
                                                         <option value="100">100</option>
+                                                        <option value="50">50</option>
+                                                        <option value="All">All</option>
                                                     </select>
                                                 </div>
                                             </div>

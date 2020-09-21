@@ -243,12 +243,25 @@
     // loadSeedAssoc(2);
     // seedassociatedModal.show();
 
+    setTimeout(()=>{
+        awAllClick();
+    },500);    
+
+    awAllClick = () => {
+        searchBar.value = "all";
+        searchBtn.click();
+        searchBar.value = "";   
+    }
     searchBar.addEventListener('keyup',(e)=> {
+        if(searchBar.value.length == 0 ) {
+            awAllClick();
+        }
+
        if(e.keyCode == 13) {
           searchBtn.click();
         }
     });
-
+    
     searchBtn.addEventListener('click', function() {
 
         loadTable();

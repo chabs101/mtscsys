@@ -37,6 +37,7 @@ $search = $_GET['search'];
 	$dompdf->load_html($content);
 	$dompdf->set_paper("letter","landscape");
 	$dompdf->render();
+	ob_end_clean();
 	$dompdf->stream("GENERATE SEED COLLECTION.pdf",array("Attachment" => 0));
 }
 ?>

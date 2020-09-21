@@ -32,13 +32,27 @@
 
                                     
                                         <div class="row">
+                                            
                                             <div class="col-md-8">
                                                 <label class="control-label"> PRESS [<b>ALT + 1</b>] TO FOCUS SEARCH BAR</label>
                                                 <div class="input-group">
-                                                    <input class="form-control" type="text" placeholder="Search species_name/botanical_name/location/seedlot_no/region" id="search-input"/>
+                                                    <input class="form-control" type="text" placeholder="Search ..." id="search-input"/>
                                                     <div class="input-group-append">
                                                         <button class="btn btn-primary" id="search-btn" type="button"><i class="fas fa-search"></i></button>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="control-label">&nbsp;</label>
+                                                <div class="form-group">
+                                                    <input type="number" name="qtyToPrint" id="qtyToPrint" class="form-control" placeholder="qty" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <label class="control-label">&nbsp;</label>
+                                                <div class="form-group">
+                                                    <button type="button" class="btn btn-primary float-left" id="printBtn">PRINT</button>
                                                 </div>
                                             </div>
 
@@ -67,7 +81,6 @@
                                    
                                 </div>
                                 <div class="card-footer">
-                                    <button type="button" class="btn btn-primary float-right" id="printBtn">PRINT</button>
 
                                 </div>
                             </div>
@@ -101,6 +114,7 @@
         var searchBtn = document.querySelector("#search-btn");
         var searchBar = document.querySelector("#search-input");
         var checkbox_all = document.querySelector("#checkbox_all");
+        var qtyToPrint = document.querySelector("#qtyToPrint");
         dataSeedCollection = {};
         getAllIds = [];
         getAllName = [];
@@ -133,6 +147,7 @@
                 for(i in getAllName) {
                     myParams += "&seedName[]="+getAllName[i];
                 }
+                myParams += "&qtyToPrint="+(qtyToPrint.value.length > 0 ? qtyToPrint.value : 1 );
 
 
                 document.querySelector('#printModal iframe')

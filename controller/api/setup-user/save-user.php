@@ -12,6 +12,15 @@ if(isset($_POST['password'])) {
 }
 
 if(trim($_POST['user_id']) == "") {
+	$check = $db->select("dt_user","*","isdeleted=0 AND username='".$_POST['username']."' ");
+	$check = $db->result();
+	
+	if(count($check) > 0) {
+		$arr['success'] = false;
+		$arr['message'] = $_POST['username']." is Already Exist.";
+		echo json_encode([$arr]);
+		return;
+	}
 	$result = $db->rawQuery("INSERT INTO dt_user (first_name, last_name, gender, username, password, created_at)
 									VALUES (
 									'".($_POST['first_name'] ?? "")."',	
@@ -21,15 +30,24 @@ if(trim($_POST['user_id']) == "") {
 									'".$bcryptresult."',
 									NOW()) ");
 }else {
-	$updatePassQ =  "password='".$bcryptresult."',";
-	$check = $db->select("dt_user","*","isdeleted=0 AND username='".$_POST['username']."'");
-	$check = $db->result();
-	
-	if(count($check) > 0) {
-		$arr['success'] = false;
-		$arr['message'] = "Username is already Taken.";
-		echo json_encode([$arr]);
-		return;
+	$updatePassQ =  trim($_POST['password'])!="" ? "password='".$bcryptresult."'," : "";
+	$getNameBeforeUpd = $db->select("dt_user","*","isdeleted=0 AND user_id='".$_POST['user_id']."' ");
+	$getNameBeforeUpd = $db->result();
+
+	if((count($getNameBeforeUpd) > 0)) {
+		if($getNameBeforeUpd[0]['username'] != $_POST['username']) {
+
+			$check = $db->select("dt_user","*","isdeleted=0 AND username='".$_POST['username']."'");
+			$check = $db->result();
+			
+			if(count($check) > 0) {
+				$arr['success'] = false;
+				$arr['message'] = $_POST['username']." is Already Taken.";
+				echo json_encode([$arr]);
+				return;
+			}
+
+		}
 	}
 
 	$result = $db->rawQuery("UPDATE dt_user SET 

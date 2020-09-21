@@ -10,7 +10,8 @@ $db = new DBconn();
 
 $_SESSION['data'] = [
 					"ids" 		=>  $_GET['ids'],
-					"seedName" 		=>  $_GET['seedName']
+					"seedName" 		=>  $_GET['seedName'],
+					"qtyToPrint" => $_GET['qtyToPrint']
 					];
 
 // echo json_encode($_SESSION['data']);
@@ -25,5 +26,6 @@ $date = date('Y-m-d-Hm');
 $dompdf->load_html($content);
 $dompdf->set_paper("letter","portrait");
 $dompdf->render();
+ob_end_clean();
 $dompdf->stream("barcode.pdf",array("Attachment" => 0));
 ?>

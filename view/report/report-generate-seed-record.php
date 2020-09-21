@@ -73,14 +73,11 @@
 </head>
 <body>
 
-	<div style="width: 100%;position:absolute;height:160px;">
-		<div style="text-align: center;margin-top:10px;">
-			<label style="font-size: 18px;"><b>SEED RECORD CARD</b></label><br>
-		</div>
-	</div>
+	<?php $title = "SEED RECORD CARD";?>
+	<?php include 'default_title.php'; ?><br><br>
 
 
-	<div style="width:100%;margin-top:30px;page-break-inside:auto;">
+	<div style="width:100%;margin-top:55px;page-break-inside:auto;">
 
 		<table class="tos">
 			<tr>
