@@ -2,7 +2,6 @@
 
 
     var seedRecordModal = new BSN.Modal("#seed-record-modal");
-    var seedGerminationModal = new BSN.Modal("#seed-germination-modal");
     var seedConsigneeModal = new BSN.Modal("#seed-consignee-modal");
     var searchBtn = document.querySelector("#search-btn");
     var searchBar = document.querySelector("#search-input");
@@ -10,8 +9,7 @@
     var seedRecordForm = document.querySelector("#seedRecordForm");
     var seedCollectionBtn = document.querySelector("#seedCollectionBtn");
     var seedCollectionTbl = document.querySelector("#seedCollectionTbl");
-    var consigneeModalBtn   = document.querySelector("#consigneeModalBtn");
-    var germinationModalBtn = document.querySelector("#germinationModalBtn");
+    var seedRecordOtherModalBtn   = document.querySelector("#seedRecordOtherModalBtn");
     var seedRecordBtncontainer = document.querySelector("#seed-record-btn-container");
 
     dataSeedCollection = {};
@@ -27,55 +25,97 @@
 
     });
     
-    germinationInputDefault = '<div class="form-row germination-input-default">\
-                    <div class="col-lg-2">\
-                        <div class="form-group">\
-                            <label class="control-label">Method :</label>\
-                            <input class="form-control form-control-sm seed_germination_id" type="hidden" name="seed_germination_id[]">\
-                            <input class="form-control form-control-sm seed_record_id" type="hidden" name="seed_record_id[]">\
-                            <input class="form-control form-control-sm method" type="text" name="method[]">\
-                        </div>\
-                    </div>\
-                    <div class="col-lg-3">\
-                        <div class="form-group">\
-                            <label class="control-label">From :</label>\
-                            <input class="form-control form-control-sm seed_from" type="date" name="seed_from[]"/>\
-                        </div>\
-                    </div>\
-                    <div class="col-lg-3">\
-                        <div class="form-group">\
-                            <label class="control-label">To :</label>\
-                            <input class="form-control form-control-sm seed_to" type="date" name="seed_to[]"/>\
-                        </div>\
-                    </div>\
-                    <div class="col-lg-3">\
-                        <div class="form-group">\
-                            <label class="control-label">Viability/10 g(%) :</label>\
-                            <input class="form-control form-control-sm viab" type="number" name="viab[]"/>\
-                        </div>\
-                    </div>\
-                    <div class="col-lg-1">\
-                            <label class="control-label"> &nbsp;</label>\
-                        <button class="btn btn-sm btn-danger form-control form-control-sm remove-germination-btn" type="button"><span class="fa fa-times"></span></button>\
-                    </div>\
-                </div>';
 
-    consigneeInputDefault = '<div class="form-row consignee-input-default">\
-                    <div class="col-lg-1">\
-                        <div class="form-group">\
-                            <label class="control-label">File No</label>\
-                            <input class="form-control form-control-sm file_no" type="number" name="file_no[]"/>\
+    consigneeInputDefault = '<div class="form-row consignee-input-default small border mt-4 p-2">\
+                    <div class="row">\
+                        <div class="col-lg-12">\
+                                <label class="control-label"><b>DETAIL</b>&nbsp;</label>\
                         </div>\
+                        <div class="col-lg-1">\
+                            <div class="form-group">\
+                                <label class="control-label">Tree No</label>\
+                                <input class="form-control form-control-sm tree_no" type="number" name="tree_no[]"/>\
+                            </div>\
+                        </div>\
+                        <div class="col-lg-2">\
+                            <div class="form-group">\
+                                <label class="control-label">Barcode</label>\
+                                <input class="form-control form-control-sm barcode" type="text" name="barcode[]"/>\
+                            </div>\
+                        </div>\
+                        <div class="col-lg-2">\
+                            <div class="form-group">\
+                                <label class="control-label">Collection (Bulk/Individuals)</label>\
+                                <input class="form-control form-control-sm collection" type="text" name="collection[]"/>\
+                            </div>\
+                        </div>\
+                        <div class="col-lg-1">\
+                            <div class="form-group">\
+                                <label class="control-label">MC</label>\
+                                <input class="form-control form-control-sm mc" type="text" name="mc[]"/>\
+                            </div>\
+                        </div>\
+                        <div class="col-lg-2">\
+                            <div class="form-group">\
+                                <label class="control-label">Purity</label>\
+                                <input class="form-control form-control-sm purity" type="text" name="purity[]"/>\
+                            </div>\
+                        </div>\
+                        <div class="col-lg-2">\
+                            <div class="form-group">\
+                                <label class="control-label">Viability</label>\
+                                <input class="form-control form-control-sm viab" type="text" name="viab[]"/>\
+                            </div>\
+                        </div>\
+                        <div class="col-lg-1">\
+                            <div class="form-group">\
+                                <label class="control-label">Seed Count</label>\
+                                <input class="form-control form-control-sm seed_count" type="number" name="seed_count[]"/>\
+                            </div>\
+                        </div>\
+                        <div class="col-lg-1">\
+                            <div class="form-group">\
+                                <label class="control-label">Seed Wt(g)</label>\
+                                <input class="form-control form-control-sm seed_weight" type="number" name="seed_weight[]"/>\
+                            </div>\
+                        </div>\
+                    </div>\
+                    <div class="row">\
+                        <div class="col-lg-12">\
+                                <label class="control-label"><b>Storage</b>&nbsp;</label>\
+                        </div>\
+                        <div class="col-lg-4">\
+                            <div class="form-group">\
+                                <label class="control-label">Room</label>\
+                                <input class="form-control form-control-sm room" type="text" name="room[]"/>\
+                            </div>\
+                        </div>\
+                        <div class="col-lg-4">\
+                            <div class="form-group">\
+                                <label class="control-label">Cont. No</label>\
+                                <input class="form-control form-control-sm cont_no" type="text" name="cont_no[]"/>\
+                            </div>\
+                        </div>\
+                        <div class="col-lg-4">\
+                            <div class="form-group">\
+                                <label class="control-label">Bag No.</label>\
+                                <input class="form-control form-control-sm bag_no" type="number" name="bag_no[]"/>\
+                            </div>\
+                        </div>\
+                    </div>\
+                    <div class="row">\
+                    <div class="col-lg-12">\
+                            <label class="control-label"><b>Dispatch</b>&nbsp;</label>\
                     </div>\
                     <div class="col-lg-3">\
                         <div class="form-group">\
                             <label class="control-label">Date</label>\
-                            <input class="form-control form-control-sm seed_consignee_id" type="hidden" name="seed_consignee_id[]">\
+                            <input class="form-control form-control-sm seed_record_other_id" type="hidden" name="seed_record_other_id[]">\
                             <input class="form-control form-control-sm seed_record_id" type="hidden" name="seed_record_id[]">\
                             <input class="form-control form-control-sm consignee_date" type="date" name="consignee_date[]">\
                         </div>\
                     </div>\
-                    <div class="col-lg-3">\
+                    <div class="col-lg-4">\
                         <div class="form-group">\
                             <label class="control-label">Consignee</label>\
                             <input class="form-control form-control-sm consignee" type="text" name="consignee[]"/>\
@@ -83,20 +123,21 @@
                     </div>\
                     <div class="col-lg-2">\
                         <div class="form-group">\
-                            <label class="control-label">Amount Sent</label>\
-                            <input class="form-control form-control-sm amount_sent" type="number" name="amount_sent[]"/>\
+                            <label class="control-label">Released</label>\
+                            <input class="form-control form-control-sm released" type="number" name="released[]"/>\
                         </div>\
                     </div>\
                     <div class="col-lg-2">\
                         <div class="form-group">\
-                            <label class="control-label">Amount Left</label>\
-                            <input class="form-control form-control-sm amount_left" type="number" name="amount_left[]"/>\
+                            <label class="control-label">Balance</label>\
+                            <input class="form-control form-control-sm balance" type="number" name="balance[]"/>\
                         </div>\
                     </div>\
                     <div class="col-lg-1">\
                             <label class="control-label"> &nbsp;</label>\
                         <button class="btn btn-sm btn-danger form-control form-control-sm remove-consignee-btn" type="button"><span class="fa fa-times"></span></button>\
                     </div>\
+                </div>\
                 </div>';
 
     searchBar.addEventListener('keyup',(e)=> {
@@ -186,34 +227,19 @@
             return;
         }
     });
-
-    germinationModalBtn.addEventListener('click',(el) => {
-        germinationCollection(el.target.getAttribute('data-seed-record-id'));
-        console.log(el.target.getAttribute('data-seed-record-id'))
-        seedGerminationModal.show();
-    });
-
-    consigneeModalBtn.addEventListener('click',(el) => {
-        consigneeCollection(el.target.getAttribute('data-seed-record-id'));
+    seedRecordOtherModalBtn.addEventListener('click',(el) => {
+        seedRecordOtherCollection(el.target.getAttribute('data-seed-record-id'));
         console.log(el.target.getAttribute('data-seed-record-id'))
         seedConsigneeModal.show();
     });
 
-    document.querySelector("#insert-row-germination-btn").addEventListener('click', () => {
-        inputFormRef = document.querySelector("#germination-inputs");
-        genDiv = document.createElement('div');
-        genDiv.innerHTML = germinationInputDefault;
-        genDiv.querySelector('.seed_record_id').value = germinationModalBtn.getAttribute('data-seed-record-id');
-        inputFormRef.appendChild(genDiv);
-    });
 
     document.querySelector("#insert-row-consignee-btn").addEventListener('click', () => {
         inputFormRef = document.querySelector("#consignee-inputs");
         genDiv = document.createElement('div');
         genDiv.innerHTML = consigneeInputDefault;
         divLength = document.querySelectorAll(".consignee-input-default").length + 1;
-        genDiv.querySelector('.seed_record_id').value = consigneeModalBtn.getAttribute('data-seed-record-id');
-        genDiv.querySelector(".file_no").value = divLength;
+        genDiv.querySelector('.seed_record_id').value = seedRecordOtherModalBtn.getAttribute('data-seed-record-id');
         inputFormRef.appendChild(genDiv);
     });
 
@@ -257,6 +283,9 @@
                         presence : {allowEmpty:false}
                     },
                     quantity :{
+                        presence : {allowEmpty:false}
+                    },
+                    g_method :{
                         presence : {allowEmpty:false}
                     }
                     
@@ -309,43 +338,14 @@
 
     document.addEventListener('click', e => {
         var targetElement = e.target || e.srcElement;
-        if(e.target.closest('.remove-germination-btn')) {
-            console.log(e.target.localName);
-            if(document.querySelectorAll('.remove-germination-btn').length  > 1) {
-
-                if(e.target.localName != 'button') {
-                    var parentNodeTobeRemove = targetElement.parentNode.parentNode.parentNode;
-                    console.log(parentNodeTobeRemove)
-                    getId =  parentNodeTobeRemove.querySelector('.seed_germination_id').value;
-                    tobeDeleteSeedGerminationData.push(getId);    
-                    parentNodeTobeRemove.remove();
-                    // console.log(tobeDeleteSeedGerminationData);
-                    return;
-                }
-
-                
-                var parentNodeTobeRemove = targetElement.parentNode.parentNode;
-                console.log(parentNodeTobeRemove)
-                getId =  parentNodeTobeRemove.querySelector('.seed_germination_id').value;
-                tobeDeleteSeedGerminationData.push(getId);
-                parentNodeTobeRemove.remove();
-                // console.log(tobeDeleteSeedGerminationData);
-                return;
-
-            }
-        }
-    });
-
-    document.addEventListener('click', e => {
-        var targetElement = e.target || e.srcElement;
         if(e.target.closest('.remove-consignee-btn')) {
             console.log(e.target.localName);
             if(document.querySelectorAll('.remove-consignee-btn').length  > 1) {
 
                 if(e.target.localName != 'button') {
-                    var parentNodeTobeRemove = targetElement.parentNode.parentNode.parentNode;
+                    var parentNodeTobeRemove = targetElement.parentNode.parentNode.parentNode.parentNode;
                     console.log(parentNodeTobeRemove)
-                    getId =  parentNodeTobeRemove.querySelector('.seed_consignee_id').value;
+                    getId =  parentNodeTobeRemove.querySelector('.seed_record_other_id').value;
                     tobeDeleteSeedConsigneeData.push(getId);    
                     parentNodeTobeRemove.remove();
                     // console.log(tobeDeleteSeedConsigneeData);
@@ -353,9 +353,9 @@
                 }
 
                 
-                var parentNodeTobeRemove = targetElement.parentNode.parentNode;
+                var parentNodeTobeRemove = targetElement.parentNode.parentNode.parentNode;
                 console.log(parentNodeTobeRemove)
-                getId =  parentNodeTobeRemove.querySelector('.seed_consignee_id').value;
+                getId =  parentNodeTobeRemove.querySelector('.seed_record_other_id').value;
                 tobeDeleteSeedConsigneeData.push(getId);
                 parentNodeTobeRemove.remove();
                 // console.log(tobeDeleteSeedConsigneeData);
@@ -365,34 +365,6 @@
         }
     });
 
-    document.querySelector("#modal-germination-submit-btn").addEventListener('click', async (e) => {
-        e.preventDefault();
-        const formData = new FormData(document.querySelector("#seedGerminationForm"));
-
-        for(var i in tobeDeleteSeedGerminationData) {
-            formData.append("tobeDelete_id[]",tobeDeleteSeedGerminationData[i]);
-        }
-
-        fetch('../controller/api/seed-record/save-seed-germination.php', {
-           method: 'POST',
-           body : formData
-        })
-        .then(response => response.json())
-        .then((data) => {
-            if(data[0].success) {
-                 swal({
-                    position: 'center',
-                    icon: 'success',
-                    title: data[0].message,
-                    showConfirmButton: false,
-                    timer: 1000
-                  });  
-                seedRecordModal.show();
-                return;
-             }
-        });
-
-    });
 
     document.querySelector("#modal-consignee-submit-btn").addEventListener('click', async (e) => {
         e.preventDefault();
@@ -402,7 +374,7 @@
             formData.append("tobeDelete_id[]",tobeDeleteSeedConsigneeData[i]);
         }
 
-        fetch('../controller/api/seed-record/save-seed-consignee.php', {
+        fetch('../controller/api/seed-record/save-seed-record-other.php', {
            method: 'POST',
            body : formData
         })
@@ -453,60 +425,25 @@
             document.querySelector("#collection_date").value             = moment(editRow.collection_date).format('YYYY-MM-D');
             document.querySelector("#project").value                     = (editRow.project ?? "");
             document.querySelector("#identified_by").value               = (editRow.identified_by ?? "");
-            document.querySelector("#seed_condition").value                   = (editRow.seed_condition ?? "");
+            document.querySelector("#seed_condition").value              = (editRow.seed_condition ?? "");
             document.querySelector("#storage").value                     = (editRow.storage ?? "");
             document.querySelector("#quantity").value                    = (editRow.quantity ?? ""); 
+            document.querySelector("#g_method").value                    = (editRow.g_method ?? "");
+            document.querySelector("#g_from").value                      = (editRow.g_from ?? "");
+            document.querySelector("#g_to").value                        = (editRow.g_to ?? "");
+            document.querySelector("#g_viab").value                      = (editRow.g_viab ?? ""); 
+
             editRow.seed_record_id ? seedRecordBtncontainer.hidden = false : seedRecordBtncontainer.hidden = true;
-            consigneeModalBtn.setAttribute("data-seed-record-id",editRow.seed_record_id);
-            germinationModalBtn.setAttribute("data-seed-record-id",editRow.seed_record_id);
+            seedRecordOtherModalBtn.setAttribute("data-seed-record-id",editRow.seed_record_id);
     }
                  
-    var germinationCollection = async (id) => {
-            inputFormRef = document.querySelector("#germination-inputs");
-            inputFormRef.innerHTML = "";
-            // id = id ?? "";
-           await fetch('../controller/api/seed-record/get-seed-record-germination?search='+id, {
-               method: 'GET',
-               header : {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-               }
-            })
-            .then(response => response.json())
-            .then((callback) => {
-                console.log(callback.length);
-                if(callback.length > 0) {
 
-                    callback.forEach((data, index)=> {
-                        console.log(data);
-                        genDiv = document.createElement('div');
-                        genDiv.innerHTML = germinationInputDefault;
-                        genDiv.querySelector('.seed_germination_id').value = data.seed_germination_id ?? "";
-                        genDiv.querySelector('.seed_record_id').value = data.seed_record_id ?? "";
-                        genDiv.querySelector('.method').value = data.method ?? "";
-                        genDiv.querySelector('.seed_from').value = moment(data.seed_from).format('YYYY-MM-D');
-                        genDiv.querySelector('.seed_to').value = moment(data.seed_to).format('YYYY-MM-D');
-                        genDiv.querySelector('.viab').value = data.viab ?? "";
-                        inputFormRef.appendChild(genDiv);
 
-                    });
-                    return; 
-                }
-
-                genDiv = document.createElement('div');
-                genDiv.innerHTML = germinationInputDefault;
-                genDiv.querySelector('.seed_record_id').value = germinationModalBtn.getAttribute('data-seed-record-id');
-                inputFormRef.appendChild(genDiv);
-
-            });
-
-    }
-
-    var consigneeCollection = async (id) => {
+    var seedRecordOtherCollection = async (id) => {
             inputFormRef = document.querySelector("#consignee-inputs");
             inputFormRef.innerHTML = "";
             // id = id ?? "";
-           await fetch('../controller/api/seed-record/get-seed-record-consignee?search='+id, {
+           await fetch('../controller/api/seed-record/get-seed-record-other?search='+id, {
                method: 'GET',
                header : {
                 'Accept': 'application/json',
@@ -522,13 +459,23 @@
                         console.log(data);
                         genDiv = document.createElement('div');
                         genDiv.innerHTML = consigneeInputDefault;
-                        genDiv.querySelector('.seed_consignee_id').value = data.seed_consignee_id ?? "";
+                        genDiv.querySelector('.seed_record_other_id').value = data.seed_record_other_id ?? "";
                         genDiv.querySelector('.seed_record_id').value = data.seed_record_id ?? "";
-                        genDiv.querySelector('.file_no').value = data.file_no ?? "";
                         genDiv.querySelector('.consignee_date').value = moment(data.consignee_date).format('YYYY-MM-D');
-                        genDiv.querySelector('.consignee').value = data.consignee ?? "";
-                        genDiv.querySelector('.amount_sent').value = data.amount_sent ?? "";
-                        genDiv.querySelector('.amount_left').value = data.amount_left ?? "";
+                        genDiv.querySelector('.consignee').value    = data.consignee ?? "";
+                        genDiv.querySelector('.released').value     = data.released ?? "";
+                        genDiv.querySelector('.balance').value      = data.balance ?? "";
+                        genDiv.querySelector('.tree_no').value      = data.tree_no ?? "";
+                        genDiv.querySelector('.barcode').value      = data.barcode ?? "";
+                        genDiv.querySelector('.collection').value   = data.collection ?? "";
+                        genDiv.querySelector('.mc').value           = data.mc ?? "";
+                        genDiv.querySelector('.purity').value       = data.purity ?? "";
+                        genDiv.querySelector('.viab').value         = data.viab ?? "";
+                        genDiv.querySelector('.seed_count').value   = data.seed_count ?? "";
+                        genDiv.querySelector('.seed_weight').value   = data.seed_weight ?? "";
+                        genDiv.querySelector('.room').value         = data.room ?? "";
+                        genDiv.querySelector('.cont_no').value      = data.cont_no ?? "";
+                        genDiv.querySelector('.bag_no').value       = data.bag_no ?? "";
                         inputFormRef.appendChild(genDiv);
 
                     });
@@ -537,7 +484,7 @@
 
                 genDiv = document.createElement('div');
                 genDiv.innerHTML = consigneeInputDefault;
-                genDiv.querySelector('.seed_record_id').value = germinationModalBtn.getAttribute('data-seed-record-id');
+                genDiv.querySelector('.seed_record_id').value = seedRecordOtherModalBtn.getAttribute('data-seed-record-id');
                 inputFormRef.appendChild(genDiv);
 
             });

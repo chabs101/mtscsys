@@ -11,7 +11,7 @@ $arr = [];
 if(trim($_POST['seed_record_id']) == "") {
 	if(isset($_POST['species_code'])) {
 		
-	$result = $db->rawQuery("INSERT INTO seed_record (seed_collection_id, species_code, store_code, cost_code, geo_n_soil, bulk, tree, dbh, total_height, form, remarks, fumigation_method, collector, collector_no, collection_date, project, identified_by, seed_condition, storage, quantity, created_at)
+	$result = $db->rawQuery("INSERT INTO seed_record (seed_collection_id, species_code, store_code, cost_code, geo_n_soil, bulk, tree, dbh, total_height, form, remarks, fumigation_method, collector, collector_no, collection_date, project, identified_by, seed_condition, storage, quantity, g_method, g_from, g_to, g_viab, created_at)
 									VALUES (
 									'".($_POST['seed_collection_id'] ?? "")."',	
 									'".($_POST['species_code'] ?? "")."',	
@@ -33,6 +33,10 @@ if(trim($_POST['seed_record_id']) == "") {
 									'".($_POST['seed_condition'] ?? "")."',
 									'".($_POST['storage'] ?? "")."',
 									'".($_POST['quantity'] ?? "")."',
+									'".($_POST['g_method'] ?? "")."',
+									'".( (!empty($_POST['g_from'])) ? $_POST['g_from'] : "00-00-0000" )."',
+									'".( (!empty($_POST['g_to'])) ? $_POST['g_to'] : "00-00-0000" )."',
+									'".($_POST['g_viab'] ?? "")."',
 									NOW()) ");
 	}
 }else {
@@ -57,6 +61,10 @@ if(trim($_POST['seed_record_id']) == "") {
 									seed_condition='".($_POST['seed_condition'] ?? "")."',
 									storage='".($_POST['storage'] ?? "")."',
 									quantity='".($_POST['quantity'] ?? "")."',
+									g_method='".($_POST['g_method'] ?? "")."',
+									g_from='".( (!empty($_POST['g_from'])) ? $_POST['g_from'] : "00-00-0000" )."',
+									g_to='".( (!empty($_POST['g_to'])) ? $_POST['g_to'] : "00-00-0000" )."',
+									g_viab='".($_POST['g_viab'] ?? "")."',
 									updated_at=NOW()											
 									WHERE seed_record_id='".$_POST['seed_record_id']."' ");
 

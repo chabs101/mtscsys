@@ -42,7 +42,7 @@
 			width: 100%;
 			text-align: center;
 			border: 1px solid black;
-			padding: 3px;
+			padding: 5px;
 			font-size: 14px;
 		}
 		.table td, th{
@@ -90,6 +90,10 @@
 		.text-center { 
 			text-align:center;
 		}
+
+		.small {
+			font-size: x-small !important;
+		}
 	</style>
 </head>
 <body>
@@ -105,7 +109,7 @@
 
 	<div style="width:100%;margin-top:55px;page-break-inside:auto;">
 
-		<table class="tStyle">
+		<table class="tStyle small">
 			<tr>
 				<td colspan="1" class="text-left b-r-n">Species</td>
 				<td colspan="3" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['species_name'] ?? "n/a";?></td>
@@ -137,10 +141,11 @@
 					&nbsp;
 				</td>
 			</tr>
+
 			<tr>
-				<td colspan="1" class="text-left b-r-n">Sp. Freq.</td>
+				<td colspan="1" class="text-left b-r-n">Vegetation Structure:</td>
 				<td colspan="2" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['sp_freq'] ?? "n/a";?></td>
-				<td colspan="2" class="text-left b-r-n">pH</td>
+				<td colspan="2" class="text-left b-r-n">Soil Structure:</td>
 				<td colspan="2" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['ph'] ?? "n/a";?></td>
 				<td colspan="2">Association Include</td>
 				<td colspan="1">Freq.</td>
@@ -148,60 +153,39 @@
 				<td colspan="3">Comments</td>
 			</tr>
 			<tr>
+				<td colspan="1" class="text-left b-r-n">Sp. Freq.</td>
+				<td colspan="2" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['sp_freq'] ?? "n/a";?></td>
+				<td colspan="2" class="text-left b-r-n">pH</td>
+				<td colspan="2" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['ph'] ?? "n/a";?></td>
+				<td colspan="2" rowspan="5"><?=$_SESSION['data']['seed_result'][0]['assoc_inc'] ?? "&nbsp;";?></td>
+				<td colspan="1" rowspan="5"><?=$_SESSION['data']['seed_result'][0]['freq'] ?? "&nbsp;";?></td>
+				<td colspan="1" rowspan="5"><?=$_SESSION['data']['seed_result'][0]['ht_m'] ?? "&nbsp;";?></td>
+				<td colspan="3" rowspan="5"><?=$_SESSION['data']['seed_result'][0]['comments'] ?? "&nbsp;";?></td>
+
+			</tr>
+			<tr>
 				<td colspan="1" class="text-left b-r-n">Slope</td>
-				<td colspan="2" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['slope'] ?? "n/a";?></td>
-				<td colspan="2" class="text-left b-r-n">Geology Alluvial</td>
-				<td colspan="2" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['geo_alluv'] ?? "n/a";?></td>
-				<td colspan="2"><?=$_SESSION['data']['assoc_result'][0]['assoc_inc'] ?? "&nbsp;";?></td>
-				<td colspan="1"><?=$_SESSION['data']['assoc_result'][0]['freq'] ?? "&nbsp;";?></td>
-				<td colspan="1"><?=$_SESSION['data']['assoc_result'][0]['ht_m'] ?? "&nbsp;";?></td>
-				<td colspan="3"><?=$_SESSION['data']['assoc_result'][0]['comments'] ?? "&nbsp;";?></td>
+				<td colspan="6" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['slope'] ?? "n/a";?></td>
 			</tr>
 			<tr>
 				<td colspan="1" class="text-left b-r-n">Seed Crop</td>
 				<td colspan="2" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['seed_crop'] ?? "n/a";?></td>
 				<td colspan="2" class="text-left b-r-n">Predation Status</td>
 				<td colspan="2" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['predation_status'] ?? "n/a";?></td>
-				<td colspan="2"><?=$_SESSION['data']['assoc_result'][1]['assoc_inc'] ?? "&nbsp;";?></td>
-				<td colspan="1"><?=$_SESSION['data']['assoc_result'][1]['freq'] ?? "&nbsp;";?></td>
-				<td colspan="1"><?=$_SESSION['data']['assoc_result'][1]['ht_m'] ?? "&nbsp;";?></td>
-				<td colspan="3"><?=$_SESSION['data']['assoc_result'][1]['comments'] ?? "&nbsp;";?></td>
 			</tr>
 			<tr>
 				<td colspan="1" class="text-left b-r-n">Bud</td>
-				<td colspan="2" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['bud'] ?? "n/a";?></td>
-				<td colspan="2" class="text-left b-r-n">Root Sucker</td>
-				<td colspan="2" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['root_sucker'] ?? "n/a";?></td>
-				<td colspan="2"><?=$_SESSION['data']['assoc_result'][2]['assoc_inc'] ?? "&nbsp;";?></td>
-				<td colspan="1"><?=$_SESSION['data']['assoc_result'][2]['freq'] ?? "&nbsp;";?></td>
-				<td colspan="1"><?=$_SESSION['data']['assoc_result'][2]['ht_m'] ?? "&nbsp;";?></td>
-				<td colspan="3"><?=$_SESSION['data']['assoc_result'][2]['comments'] ?? "&nbsp;";?></td>
+				<td colspan="6" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['bud'] ?? "n/a";?></td>
 			</tr>
 			<tr>
 				<td colspan="1" class="text-left b-r-n">Flowers</td>
-				<td colspan="2" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['flower'] ?? "n/a";?></td>
-				<td colspan="2" class="text-left b-r-n">Coppice</td>
-				<td colspan="2" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['coppice'] ?? "n/a";?></td>
-				<td colspan="2"><?=$_SESSION['data']['assoc_result'][3]['assoc_inc'] ?? "&nbsp;";?></td>
-				<td colspan="1"><?=$_SESSION['data']['assoc_result'][3]['freq'] ?? "&nbsp;";?></td>
-				<td colspan="1"><?=$_SESSION['data']['assoc_result'][3]['ht_m'] ?? "&nbsp;";?></td>
-				<td colspan="3"><?=$_SESSION['data']['assoc_result'][3]['comments'] ?? "&nbsp;";?></td>
+				<td colspan="6" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['flower'] ?? "n/a";?></td>
 			</tr>
-			<!-- incase 4+ assoc -->
-			<?php for($i = 3; $i<(count($_SESSION['data']['assoc_result'])); $i++) {?>
-				<tr>
-					<td colspan="7" class="text-left b-r-n"></td>
-					<td colspan="2"><?=$_SESSION['data']['assoc_result'][$i]['assoc_inc'] ?? "&nbsp;";?></td>
-					<td colspan="1"><?=$_SESSION['data']['assoc_result'][$i]['freq'] ?? "&nbsp;";?></td>
-					<td colspan="1"><?=$_SESSION['data']['assoc_result'][$i]['ht_m'] ?? "&nbsp;";?></td>
-					<td colspan="3"><?=$_SESSION['data']['assoc_result'][$i]['comments'] ?? "&nbsp;";?></td>
-				</tr>
-			<?php } ?>
-			<!--  -->
+
 			<tr>
-				<td colspan="1" class="text-left b-r-n">Map Name</td>
-				<td colspan="13" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['map_name'] ?? "&nbsp;";?></td>
+				<td colspan="14" class="text-left b-l-n">&nbsp;</td>
 			</tr>
+
 			<tr>
 				<td colspan="1" rowspan="2" class="text-left b-r-n" style="vertical-align: top;">Description/notes</td>
 				<td colspan="9" rowspan="2" class="text-left b-l-n" style="vertical-align: top;">: <?=$_SESSION['data']['seed_result'][0]['description'] ?? "&nbsp;";?></td>
@@ -226,38 +210,6 @@
 					<!-- <?=$_SESSION['data']['seed_result'][0]['individuals']+$_SESSION['data']['seed_result'][0]['collect_as_bulk'] ?? "&nbsp;";?> -->
 				</td>
 			</tr>
-			<tr>
-				<td rowspan="2"><b>Collection No</b></td>
-				<td rowspan="2"><b>Botanical Code</b></td>
-				<td rowspan="2"><b>Film No</b></td>
-				<td rowspan="2"><b>Ht(m)</b></td>
-				<td rowspan="2"><b>Age</b></td>
-				<td colspan="3"><b>Bole</b></td>
-				<td colspan="6"><b>Crown</b></td>
-			</tr>
-			<tr>
-				<td colspan="2">dbh(cm)</td>
-				<td colspan="1">Form</td>
-				<td colspan="1">Density</td>
-				<td colspan="1">Branch</td>
-				<td colspan="2">Width</td>
-				<td colspan="2">Ht</td>
-			</tr>
-			<?php for($i = 0; $i<(count($_SESSION['data']['seed_other_result'])); $i++) {?>
-				<tr>
-					<td><?=$_SESSION['data']['seed_other_result'][$i]['colln_no'] ?? "&nbsp;";?></td>
-					<td><?=$_SESSION['data']['seed_other_result'][$i]['bot_code'] ?? "&nbsp;";?></td>
-					<td><?=$_SESSION['data']['seed_other_result'][$i]['film_no'] ?? "&nbsp;";?></td>
-					<td><?=$_SESSION['data']['seed_other_result'][$i]['ht_m'] ?? "&nbsp;";?></td>
-					<td><?=$_SESSION['data']['seed_other_result'][$i]['age'] ?? "&nbsp;";?></td>
-					<td colspan="2"><?=$_SESSION['data']['seed_other_result'][$i]['dbh'] ?? "&nbsp;";?></td>
-					<td colspan="1"><?=$_SESSION['data']['seed_other_result'][$i]['form'] ?? "&nbsp;";?></td>
-					<td colspan="1"><?=$_SESSION['data']['seed_other_result'][$i]['den'] ?? "&nbsp;";?></td>
-					<td colspan="1"><?=$_SESSION['data']['seed_other_result'][$i]['bm'] ?? "&nbsp;";?></td>
-					<td colspan="2"><?=$_SESSION['data']['seed_other_result'][$i]['wdt'] ?? "&nbsp;";?></td>
-					<td colspan="2"><?=$_SESSION['data']['seed_other_result'][$i]['ht_p'] ?? "&nbsp;";?></td>
-				</tr>
-			<?php } ?>
 
 <!-- 			<tr>
 				<td colspan="5">EXACT LOCALITY OF COLLECTION</td>

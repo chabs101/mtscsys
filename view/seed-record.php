@@ -339,12 +339,43 @@
             </div>
 
 
-            <div class="row" id="seed-record-btn-container">
-                <div class="col-lg-6">
-                    <button class="btn btn-sm btn-primary form-control form-control-sm" id="consigneeModalBtn" type="button"><span class="fa fa-plus"></span> CONSIGNEE</button>
+            <div class="form-row">
+                <div class="col-lg-12">
+                        <label class="control-label"><b>GERMINATION</b>&nbsp;</label>                    
                 </div>
-                <div class="col-lg-6">
-                    <button class="btn btn-sm btn-primary form-control form-control-sm" id="germinationModalBtn" type="button"><span class="fa fa-plus"></span> GERMINATION</button>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label class="control-label">Method :<b class="color-red">*</b>&nbsp;</label>
+                        <input class="form-control" type="text" id="g_method" name="g_method" />
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="control-label">From :&nbsp;</label>
+                        <input class="form-control" type="date" id="g_from" name="g_from"/>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="control-label">To :&nbsp;</label>
+                        <input class="form-control" type="date" id="g_to" name="g_to"/>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="control-label">Viability/10 g(%) :&nbsp;</label>
+                        <input class="form-control" type="text" id="g_viab" name="g_viab"/>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" id="seed-record-btn-container">
+                <div class="col-lg-12">
+                    <button class="btn btn-sm btn-primary form-control form-control-sm" id="seedRecordOtherModalBtn" type="button"><span class="fa fa-plus"></span> SEED RECORD OTHER</button>
                 </div>
             </div>
 
@@ -361,71 +392,9 @@
 </div>
 
 
-<div id="seed-germination-modal" class="modal fade" tabindex="-1"  data-keyboard="false" data-backdrop="static">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-          <h5 class="modal-title" id="myModalLabel">SEED RECORD GERMINATION</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-body">
-
-        <form id="seedGerminationForm" enctype="multipart/form-data">
-            <div id="germination-inputs">
-                <!-- <div class="form-row germination-input-default">
-                    <div class="col-lg-3">
-                        <div class="form-group">
-                            <label class="control-label">Method :</label>
-                            <input class="form-control form-control-sm method" type="text" name="method[]">
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <label class="control-label">From :</label>
-                            <input class="form-control form-control-sm from" type="text" name="from[]"/>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <label class="control-label">To :</label>
-                            <input class="form-control form-control-sm to" type="text" name="to[]"/>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label class="control-label">Viability/10 g(%) :</label>
-                            <input class="form-control form-control-sm viability" type="text" name="viability"/>
-                        </div>
-                    </div>
-                    <div class="col-lg-1">
-                            <label class="control-label"> &nbsp;</label>
-                        <button class="btn btn-sm btn-danger form-control form-control-sm remove-germination-btn"><span class="fa fa-times"></span></button>
-                    </div>
-                </div> -->
-            </div>
-
-            <div class="form-row germination-input-default">
-
-                <div class="col-lg-12">
-                        <label class="control-label"> &nbsp;</label>
-                    <button class="btn btn-sm btn-success form-control form-control-sm" type="button" id="insert-row-germination-btn"><span class="fa fa-plus"></span>
-                        INSERT ROW
-                    </button>
-                </div>
-            </div>
-        </form>
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-secondary back-btn">BACK</button>
-        <button type="button" class="btn btn-sm btn-primary" style="color:white;" id="modal-germination-submit-btn">SUBMIT</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div id="seed-consignee-modal" class="modal fade" tabindex="-1"  data-keyboard="false" data-backdrop="static">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
           <h5 class="modal-title" id="myModalLabel">SEED CONSIGNEE</h5>

@@ -71,7 +71,7 @@
                                                     <th>Region</th>
                                                     <th>Date</th>
                                                     <!-- 24% -->
-                                                    <th class="text-center" width="<?= $_SESSION['user']['role'] == 1 ? '32%' : '24%'?>">Action</th>
+                                                    <th class="text-center" width="<?= $_SESSION['user']['role'] == 1 ? '24%' : '18%'?>">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -125,7 +125,7 @@
       </div>
       <div class="modal-body">
 
-        <form id="seedCollectionForm">
+        <form id="seedCollectionForm" class="small">
 
 
             <div class="form-row">
@@ -285,17 +285,10 @@
             </div>
 
             <div class="form-row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="form-group">
                         <label class="control-label">Slope :&nbsp;</label>
                         <input class="form-control" type="text" id="slope" name="slope" />
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label class="control-label">Geology Alluvial :&nbsp;</label>
-                        <input class="form-control" type="text" id="geo_alluv" name="geo_alluv" />
                     </div>
                 </div>
             </div>
@@ -317,33 +310,10 @@
             </div>
 
             <div class="form-row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="form-group">
                         <label class="control-label">Bud :&nbsp;</label>
                         <input class="form-control" type="text" id="bud" name="bud" />
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label class="control-label">Root Sucker :&nbsp;</label>
-                        <input class="form-control" type="text" id="root_sucker" name="root_sucker" />
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label class="control-label">Flowers :&nbsp;</label>
-                        <input class="form-control" type="text" id="flower" name="flower" />
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label class="control-label">Coppice :&nbsp;</label>
-                        <input class="form-control" type="text" id="coppice" name="coppice" />
                     </div>
                 </div>
             </div>
@@ -351,8 +321,53 @@
             <div class="form-row">
                 <div class="col-lg-12">
                     <div class="form-group">
+                        <label class="control-label">Flowers :&nbsp;</label>
+                        <input class="form-control" type="text" id="flower" name="flower" />
+                    </div>
+                </div>
+            </div>
+            
+            <hr>
+
+            <div class="form-row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label class="control-label">Association Include :&nbsp;</label>
+                        <textarea class="form-control" type="text" id="assoc_include" name="assoc_include"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="control-label">Freq :&nbsp;</label>
+                        <input class="form-control" type="number" id="freq" name="freq" />
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="control-label">Ht.(m):&nbsp;</label>
+                        <input class="form-control" type="text" id="ht" name="ht" />
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="control-label">Comments:&nbsp;</label>
+                        <input class="form-control" type="text" id="comments" name="comments" />
+                    </div>
+                </div>
+            </div>
+            
+            <hr>
+
+            <div class="form-row">
+                <div class="col-lg-12">
+                    <div class="form-group">
                         <label class="control-label">Description :&nbsp;</label>
-                        <input class="form-control" type="text" id="description" name="description" />
+                        <textarea class="form-control" type="text" id="description" name="description"></textarea>
                     </div>
                 </div>
             </div>
@@ -360,7 +375,7 @@
             <div class="form-row">
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <label class="control-label">Seed Weight :&nbsp;</label>
+                        <label class="control-label">Seed Weight(g) :&nbsp;</label>
                         <input class="form-control" type="number" id="seed_weight" name="seed_weight" />
                     </div>
                 </div>
@@ -373,14 +388,7 @@
                 </div>
             </div>
 
-            <div class="form-row">
-                <div class="col-lg-12">
-                    <div class="form-group">
-                        <label class="control-label">Map Name :<b class="color-red">*</b>&nbsp;</label>
-                        <input class="form-control" type="text" id="map_name" name="map_name" />
-                    </div>
-                </div>
-            </div>
+            <hr>
 
             <div class="form-row">
                 <div class="col-lg-6">
@@ -398,16 +406,6 @@
                 </div>
             </div>
 
-            <div class="row" id="additional_seed_detail">
-                <div class="col-lg-6">
-                    <button class="btn btn-sm btn-primary form-control form-control-sm" id="seedOtherDetailBtn" type="button"><span class="fa fa-plus"></span> SEED COLLECTION OTHER DETAILS</button>
-                </div>
-                <div class="col-lg-6">
-                    <button class="btn btn-sm btn-primary form-control form-control-sm" id="seedAssocModalBtn" type="button"><span class="fa fa-plus"></span> ASSOCIATED INCLUDES</button>
-                </div>
-            </div>
-
-
         </form>
       </div>
 
@@ -420,222 +418,6 @@
 </div>
 
 
-<div id="seed-associated-modal" class="modal fade" tabindex="-1"  data-keyboard="false" data-backdrop="static">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-          <h5 class="modal-title" id="myModalLabel">SEED COLLECTION | ASSOCIATED INCLUDES</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-body">
-
-        <form id="seedassociatedForm" enctype="multipart/form-data">
-            <div id="assoc-inputs">
-<!--                 <div class="form-row assoc-input-default">
-                    <div class="col-lg-3">
-                        <div class="form-group">
-                            <label class="control-label">Associated Includes :</label>
-                            <input class="form-control form-control-sm assoc_inc" type="text" name="assoc_inc[]">
-                        </div>
-                    </div>
-
-                        
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <label class="control-label">Freq :</label>
-                            <input class="form-control form-control-sm freq" type="text" name="freq[]"/>
-                        </div>
-                    </div>
-
-                        
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <label class="control-label">Ht (m) :</label>
-                            <input class="form-control form-control-sm ht_m" type="text" name="ht_m[]"/>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label class="control-label">Comments :</label>
-                            <input class="form-control form-control-sm comments" type="text" name="comments"/>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-1">
-                            <label class="control-label"> &nbsp;</label>
-                        <button class="btn btn-sm btn-danger form-control form-control-sm remove-assoc-btn"><span class="fa fa-times"></span></button>
-                    </div>
-                </div>
- -->            </div>
-
-            <div class="form-row assoc-input-default">
-
-                <div class="col-lg-12">
-                        <label class="control-label"> &nbsp;</label>
-                    <button class="btn btn-sm btn-success form-control form-control-sm" type="button" id="insert-row-assoc-btn"><span class="fa fa-plus"></span>
-                        INSERT ROW
-                    </button>
-                </div>
-            </div>
-        </form>
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-secondary collection-back-btn">BACK</button>
-        <button type="button" class="btn btn-sm btn-primary" style="color:white;" id="modal-assoc-submit-btn">SUBMIT</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="seed-collection-other-modal" class="modal fade" tabindex="-1"  data-keyboard="false" data-backdrop="static">
-  <div class="modal-dialog modal-xl" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-          <h5 class="modal-title" id="myModalLabel">SEED COLLECTION OTHER DETAILS</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-body">
-
-        <form id="seedcollectionOtherForm">
-
-            <div id="seed-other-inputs">
-<!--                 <div class="row input-other-collection-default">
-                    <div class="col-lg-6">
-                        <div class="row">
-                            <div class="col-lg-2 prjc-3px">
-                                <div class="form-group">
-                                    <label class="control-label"><small>Colln no:</small></label>
-                                    <input class="form-control form-control-sm colln_no" type="text" name="colln_no">
-                                </div>
-                            </div>
-
-                                
-                            <div class="col-lg-1 prjc-3px">
-                                <div class="form-group">
-                                    <label class="control-label"><small>Bot no:</small></label>
-                                    <input class="form-control form-control-sm bot_no" type="text" name="bot_no"/>
-                                </div>
-                            </div>
-
-                                
-                            <div class="col-lg-2 prjc-3px">
-                                <div class="form-group">
-                                    <label class="control-label"><small>Film no:</small></label>
-                                    <input class="form-control form-control-sm film_no" type="text" name="film_no"/>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-1 prjc-3px">
-                                <div class="form-group">
-                                    <label class="control-label"><small>Ht (m):</small></label>
-                                    <input class="form-control form-control-sm ht_m" type="text" name="ht_m"/>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-1 prjc-3px">
-                                <div class="form-group">
-                                    <label class="control-label"><small>Age :</small></label>
-                                    <input class="form-control form-control-sm age" type="text" name="age"/>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 prjc-3px">
-                                <div class="form-group">
-                                    <label class="control-label"><small>dbh (cm):</small></label>
-                                    <input class="form-control form-control-sm dbh" type="text" name="dbh"/>
-                                </div>
-                            </div>
-                            <div class="col-lg-1 prjc-3px">
-                                <div class="form-group">
-                                    <label class="control-label"><small>Form :</small></label>
-                                    <input class="form-control form-control-sm form" type="text" name="form"/>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-1 prjc-3px">
-                                <div class="form-group">
-                                    <label class="control-label"><small>Den :</small></label>
-                                    <input class="form-control form-control-sm den" type="text" name="den">
-                                </div>
-                            </div>
-
-                            <div class="col-lg-1 prjc-3px">
-                                <div class="form-group">
-                                    <label class="control-label"><small>Bm :</small></label>
-                                    <input class="form-control form-control-sm bm" type="text" name="bm"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="row">
-                                
-                            <div class="col-lg-1 prjc-3px">
-                                <div class="form-group">
-                                    <label class="control-label"><small>wdt :</small></label>
-                                    <input class="form-control form-control-sm wdt" type="text" name="wdt"/>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-1 prjc-3px">
-                                <div class="form-group">
-                                    <label class="control-label"><small>Ht (%):</small></label>
-                                    <input class="form-control form-control-sm ht_p" type="text" name="ht_p"/>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-5 prjc-3px">
-                                <div class="form-group">
-                                    <label class="control-label"><small>Description/Notes:</small></label>
-                                    <input class="form-control form-control-sm desc" type="text" name="desc"/>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 prjc-3px">
-                                <div class="form-group">
-                                    <label class="control-label"><small>Seed Weight:</small></label>
-                                    <input class="form-control form-control-sm seed_weight" type="text" name="seed_weight"/>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 prjc-3px">
-                                <div class="form-group">
-                                    <label class="control-label"><small>Viab/ 10g:</small></label>
-                                    <input class="form-control form-control-sm viab" type="text" name="viab"/>
-                                </div>
-                            </div>
-                            <div class="col-lg-1 prjc-3px">
-                                <div class="form-group">
-                                    <label class="control-label"> &nbsp;</label>
-                                    <button class="btn btn-sm btn-danger form-control form-control-sm rmv-other-btn"><span class="fa fa-times"></span></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-
-
-            <div class="form-row">
-
-                <div class="col-lg-12">
-                        <label class="control-label"> &nbsp;</label>
-                    <button class="btn btn-sm btn-success form-control form-control-sm" type="button" id="insert-row-other-btn"><span class="fa fa-plus"></span>
-                        INSERT ROW
-                    </button>
-                </div>
-            </div>
-        </form>
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-secondary collection-back-btn">BACK</button>
-        <button type="button" class="btn btn-sm btn-primary" style="color:white;" id="modal-other-detail-btn">SUBMIT</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Modals end -->
 
                 <?php include('inc_common/footer.php'); ?>
@@ -645,6 +427,7 @@
         <script src="../assets/js/rjc/seed-collection.js"></script>
         <script>
             var roleUser = <?=$_SESSION['user']['role'];?>;
+            console.log(roleUser)
             new autoComplete({
                 selector: '#search-input',
                 minChars: 2,
