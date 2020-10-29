@@ -14,16 +14,9 @@ $search = $_GET['search'];
 	$db->select("seed_collection","*","isdeleted=0 AND seed_collection_id=$search");
 	$SeedCollectionResult = $db->result();
 
-	$db->select("seed_collection_prov","*","isdeleted=0 AND seed_collection_id=$search");
-	$AssocResult = $db->result();
-
-	$db->select("seed_collection_other","*","isdeleted=0 AND seed_collection_id=$search");
-	$seedOtherResult = $db->result();
 
 	$_SESSION['data'] = [
-						"seed_result" 		=>  $SeedCollectionResult,
-						"assoc_result" 		=>  $AssocResult,
-						"seed_other_result" => $seedOtherResult,
+						"seed_result" 		=>  $SeedCollectionResult
 						];
 
 	// echo json_encode($_SESSION['data']);
