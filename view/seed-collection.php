@@ -61,7 +61,7 @@
                                         </div>
                                         <br>
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="seedCollectionTbl" width="100%" cellspacing="0">
+                                        <table class="table table-bordered small" id="seedCollectionTbl" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th width="5%">barcode</th>

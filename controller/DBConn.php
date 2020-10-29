@@ -1,5 +1,6 @@
 <?php
 require 'Bcrypt.php';
+date_default_timezone_set('Asia/Manila');
 
 class DBConn {
 	private $type 	= 'localhost';
@@ -15,7 +16,15 @@ class DBConn {
 
 	function db() {
 		$this->conn = mysqli_connect($this->type,$this->user,$this->pass,$this->dbname);
-		
+		$now = new DateTime();
+		$mins = $now->getOffset() / 60;
+		$sgn = ($mins < 0 ? -1 : 1);
+		$mins = abs($mins);
+		$hrs = floor($mins/60);
+		$mins-= $hrs * 60;
+		$offset = sprintf('%+d:%02d',$hrs*$sgn, $mins);
+		$this->conn->query("SET time_zone='$offset' ");
+
 		if (!$this->conn)
 		  {
 		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -23,7 +32,7 @@ class DBConn {
 	} 
 
 	function authenticate($username, $password, $remember_me = false) {
-		$result = mysqli_query($this->conn,"SELECT * FROM dt_user WHERE username='".$username."' AND isdeleted=0 ");
+		$result = mysqli_query($this->conn,"SELECT du.*,role_name FROM dt_user du LEFT JOIN user_role ur ON ur.role_id = du.role_id WHERE username='".$username."' AND du.isdeleted=0 ");
 		if( $result->num_rows > 0 ) {
 			$row = mysqli_fetch_assoc($result);
 			$decrypt = new Bcrypt();
@@ -35,7 +44,8 @@ class DBConn {
 									"id" 		=> $row['user_id'],
 									"first_name"=> $row['first_name'],
 									"fullname" 	=> $row['first_name'] .' '. $row['last_name'],
-									"role" 		=> $row['isAdmin']
+									"image_url" => $row['image_url'],
+									"role" 		=> $row['role_id']
 									];
 
 				if($remember_me) {
@@ -83,7 +93,9 @@ class DBConn {
 									"id" 		=> $result[0]['user_id'],
 									"first_name"=> $result[0]['first_name'],
 									"fullname" 	=> $result[0]['first_name'] .' '. $result[0]['last_name'],
-									"role" 		=> $result[0]['isAdmin']
+									"image_url" => $result[0]['image_url'],
+									"role" 		=> $result[0]['role_id']
+
 									];
 				$this->rememberMe($result[0]['user_id']);
 			// echo hash_equals("4227c63eded0ac62a86cd88d2542fecf2c033d5cf81538989a783ba0d3a14cc6",$token) ? "asdssasdsa": "asdsa";
@@ -130,8 +142,21 @@ class DBConn {
 		return $row;
 
 	}
+
+	function beginTransaction() {
+		$this->conn->begin_transaction();
+	}
+
+	function commitTransaction() {
+		$this->conn->commit();
+	}
+
+	function rollbackTransaction() {
+		$this->conn->rollback();
+	}
+
 	function rawQuery($query) {
-		$result = mysqli_query($this->conn,$query );
+		$result = $this->conn->query($query);
 
 		if ($result == TRUE) {
 		    return true;
@@ -139,6 +164,7 @@ class DBConn {
 
 		if(!$this->result) {
 			printf("Error: %s\n",mysqli_error($this->conn));
+			$this->rollbackTransaction();
 		}
 
 	}
@@ -153,6 +179,18 @@ class DBConn {
 		mysqli_query($this->conn,"DELETE FROM $table WHERE $column='".$id."' ");
 	}
 
+	function saveUserLog($descparam,$id = null) {
+			$this->rawQuery("INSERT INTO user_log (description, user_id,id, created_at)
+											VALUES (
+											'".$descparam."',	
+											'".$this->user()['id']."',
+											'".$id."',
+											NOW()) ");
+	}
+
+	function user() {
+		return $_SESSION['user'];
+	}
 }
 
 ?>

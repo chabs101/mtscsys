@@ -60,7 +60,7 @@
                                                     <th>Username</th>
                                                     <th>Gender</th>
                                                     <th>Date</th>
-                                                    <th width="17%">Action</th>
+                                                    <th width="9%">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -89,7 +89,7 @@
       </div>
 
       <div class="modal-body">
-        <form id="userForm">
+        <form id="userForm"  enctype="multipart/form-data">
             
             <div class="form-row">
                 <div class="col-lg-5">
@@ -121,6 +121,16 @@
             </div>
 
             <div class="form-row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label class="control-label">User Role <b class="color-red">*</b>&nbsp;</label>
+                        <select class="form-control" id="role_id" name="role_id">
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
                 <div class="col-lg-5">
                     <div class="form-group">
                         <label class="control-label">Username :<b class="color-red">*</b>&nbsp;</label>
@@ -141,7 +151,21 @@
                             <span class="fa fa-eye-slash"></span>
                         </button>                    
                 </div>
+            </div>
 
+            <div class="form-row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label">Upload Image :&nbsp;</label>
+                        <input type="file" class="form-control" id="image_url" name="image_url"/>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label">Image Preview :&nbsp;</label><br>
+                        <image id="imagePreview" class="img img-fluid"/>
+                    </div>
+                </div>
             </div>
 
         </form>
@@ -171,11 +195,13 @@
             var saveUserBtn = document.querySelector("#saveUserBtn");
             var userForm = document.querySelector("#userForm");
             userDataCollection = {};
+            var isEditModal = false;
             // userModal.show();
 
     setTimeout(()=>{
         awAllClick();
-    },500);          
+    },500);    
+
     awAllClick = () => {
         searchBar.value = "all";
         searchBtn.click();
@@ -190,6 +216,68 @@
           searchBtn.click();
         }
     });
+
+
+    document.querySelector("#imagePreview").setAttribute("src","../storage/img/default_pic.png")
+
+    document.querySelector("#image_url").addEventListener('change',(e)=> {
+        var uploadFile = e.target.files[0];
+        var reader = new FileReader();
+        var imageType = /image.*/;
+        var fileSize = Math.round((uploadFile.size/1024));//1024 = 1mb
+        if(!uploadFile.type.match(imageType)) {
+            swal({
+                position: 'center',
+                icon: 'error',
+                title: "Please select image.",
+                timer: 1500
+            });
+            document.querySelector("#imagePreview").setAttribute("src","../storage/img/default_pic.png")
+            document.querySelector("#image_url").value = "";
+            return;
+        }
+        // console.log(uploadFile)
+        if(fileSize >=1024) {
+            swal({
+                position: 'center',
+                icon: 'error',
+                title: "Please not more than 1mb.",
+                timer: 1500
+            });
+            document.querySelector("#imagePreview").setAttribute("src","../storage/img/default_pic.png")
+            document.querySelector("#image_url").value = "";
+            return;                        
+        }
+        reader.onload = ()=> {
+            document.querySelector("#imagePreview").setAttribute("src",reader.result)
+        }   
+        reader.readAsDataURL(uploadFile);
+    });
+
+    loadRole = () => {
+                document.querySelector("#role_id").innerHTML = "<option>-</option>";
+                fetch('../controller/api/setup-role/get-role.php?search=all', {
+                   method: 'GET',
+                   header : {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                   }
+                })
+                .then(response => response.json())
+                .then((data) => {
+                    if(data.length > 0) {
+                        data.forEach((dt)=> {
+                            genDiv = document.createElement('option');
+                            genDiv.innerHTML = dt.role_name;
+                            genDiv.value = dt.role_id;
+                            document.querySelector("#role_id").appendChild(genDiv);
+
+                        });
+                    }
+
+                });
+    }
+        loadRole();
 
     searchBtn.addEventListener('click', async function() {
 
@@ -212,14 +300,15 @@
             // console.log(data);
                 newRow = tableRef.insertRow(tableRef.rows.length);
                 newRowHtml = '<tr>\
-                            <td>'+(data.first_name ?? "n/a") +" "+ (data.last_name ?? "n/a") +'</td>\
-                            <td>'+(data.username ?? "n/a")+'</td>\
-                            <td>'+(data.gender ?? "n/a")+'</td>\
-                            <td>'+(data.created_at ? moment(data.created_at).format('MMMM D, YYYY') : "n/a")+'</td>\
+                            <td><small>'+(data.first_name ?? "n/a") +" "+ (data.last_name ?? "n/a") +'</small></td>\
+                            <td><small>'+(data.username ?? "n/a")+'</small></td>\
+                            <td><small>'+(data.gender ?? "n/a")+'</small></td>\
+                            <td><small>'+(data.created_at ? moment(data.created_at).format('MMMM D, YYYY') : "n/a")+'</small></td>\
                             <td>\
                                 <div class="action-btn float-right">\
-                                    <button class="btn btn-sm btn-primary edit-btn" data-index-id="'+ index +'" data-user-id="'+ data.user_id +'"><span class="fa fa-pencil-alt" data-index-id="'+ index +'" data-user-id="'+ data.user_id +'"></span> EDIT</button>\
-                                    <button class="btn btn-sm btn-danger delete-btn" data-index-id="'+ index +'" data-user-id="'+ data.user_id +'"><span class="fa fa-times" data-index-id="'+ index +'" data-user-id="'+ data.user_id +'"></span> DELETE</button>\
+                                    <button class="btn btn-sm btn-warning disable-user-btn d-none" data-index-id="'+ index +'" data-user-id="'+ data.user_id +'"><span class="fa fa-user-alt-slash" data-index-id="'+ index +'" data-user-id="'+ data.user_id +'"></span></button>\
+                                    <button class="btn btn-sm btn-primary edit-btn" data-index-id="'+ index +'" data-user-id="'+ data.user_id +'"><span class="fa fa-pencil-alt" data-index-id="'+ index +'" data-user-id="'+ data.user_id +'"></span></button>\
+                                    <button class="btn btn-sm btn-danger delete-btn" data-index-id="'+ index +'" data-user-id="'+ data.user_id +'"><span class="fa fa-times" data-index-id="'+ index +'" data-user-id="'+ data.user_id +'"></span></button>\
                                 </div>\
                             </td>  \
                             </tr>';
@@ -239,8 +328,56 @@
 
     document.addEventListener('click', e => {
         var targetElement = e.target || e.srcElement;
-        if(e.target.closest('.edit-btn')) {
+        if(e.target.closest('.disable-user-btn')) {
+             swal({
+                position: 'center',
+                icon: "warning",
+                title: "Are you sure you want to disable this user ?",
+                dangerMode:true,
+                buttons:true
+              })
+              .then(async (yesBtn)=> {
+                // if(yesBtn) {
 
+                //     id = targetElement.getAttribute('data-id');
+                //     fetch('../controller/api/setup-user/disable-user.php?id='+id, {
+                //        method: 'GET',
+                //     })
+                //     .then(response => response.json())
+                //     .then((data) => {
+                //         if(data.success) {
+                //              swal({
+                //                 position: 'center',
+                //                 icon: 'success',
+                //                 title: "Disabled Successfully.",
+                //                 timer: 1000
+                //               });  
+                //             awAllClick();
+                //             return;
+                //         }
+                //         if(!data.success) {
+                //              swal({
+                //                 position: 'center',
+                //                 icon: 'error',
+                //                 title: data[0].message,
+                //                 timer: 2000
+                //               });  
+                //             awAllClick();
+                //             return;
+                //         }
+                //     });
+
+                //     return;
+                // }
+              });       
+        }
+    });
+
+
+    document.addEventListener('click', e => {
+        var targetElement = e.target || e.srcElement;
+        if(e.target.closest('.edit-btn')) {
+            isEditModal = true;
             insertUserDataCollection(targetElement.getAttribute('data-index-id'));
             userModal.show();
             
@@ -290,6 +427,9 @@
     createBtn.addEventListener('click', () => {
         document.querySelector("#userForm").reset();
         document.querySelector("#user_id").value = "";
+        document.querySelector("#image_url").value = "";      
+        document.querySelector("#imagePreview").setAttribute("src","../storage/img/default_pic.png")
+        isEditModal = false;
         return;
     });
 
@@ -306,10 +446,10 @@
                     gender :{
                         presence : {allowEmpty:false}
                     },
-                    username :{
+                    role_id :{
                         presence : {allowEmpty:false}
                     },
-                    password :{
+                    username :{
                         presence : {allowEmpty:false}
                     }
                 };
@@ -350,6 +490,7 @@
                             showConfirmButton: false,
                             timer: 1000
                           });  
+                        document.querySelector("#userForm").reset();
                         awAllClick();
                         userModal.dispose();
                         return;
@@ -400,6 +541,13 @@
             document.querySelector("#last_name").value       = editRow.last_name; 
             document.querySelector("#gender").value          = editRow.gender; 
             document.querySelector("#username").value        = editRow.username; 
+            document.querySelector("#role_id").value        = editRow.role_id; 
+                if(editRow.image_url != "") {
+                    document.querySelector("#imagePreview").setAttribute("src","../storage/img/user_images/"+editRow.image_url);
+                    return;
+                }
+                    document.querySelector("#imagePreview").setAttribute("src","../storage/img/default_pic.png")
+
     }
 
 </script>      

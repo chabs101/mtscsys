@@ -43,6 +43,9 @@
                 <div class="collapse" id="collapseSetup" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="./setup-user">Users</a>
+                        <a class="nav-link" href="./setup-role">Role</a>
+                        <a class="nav-link" href="../controller/backup/database">Backup Database</a>
+
                     </nav>
                 </div>
                 <?php } ?>
