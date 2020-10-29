@@ -93,7 +93,7 @@
                         <div class="col-lg-4">\
                             <div class="form-group">\
                                 <label class="control-label">Cont. No</label>\
-                                <input class="form-control form-control-sm cont_no" type="text" name="cont_no[]"/>\
+                                <input class="form-control form-control-sm cont_no" type="number" name="cont_no[]"/>\
                             </div>\
                         </div>\
                         <div class="col-lg-4">\

@@ -204,16 +204,16 @@
 					<?=$_SESSION['data']['seed_record_collection_result'][0]['geo_n_soil'] ?? "n/a";?>
 				</td>
 				<td colspan="5" class="text-left b-t-n"><?=$_SESSION['data']['seed_record_collection_result'][0]['fumigation_method'] ?? "n/a";?></td>
-				<td colspan="1">
+				<td colspan="1" rowspan="2">
 					<?=$_SESSION['data']['seed_record_collection_result'][0]['g_method'] ?? "&nbsp;";?>
 				</td>
-				<td colspan="1">
+				<td colspan="1" rowspan="2">
 					<?=$_SESSION['data']['seed_record_collection_result'][0]['g_from'] ?? "&nbsp;";?>
 				</td>
-				<td colspan="1">
+				<td colspan="1" rowspan="2">
 					<?=$_SESSION['data']['seed_record_collection_result'][0]['g_to'] ?? "&nbsp;";?>
 				</td>
-				<td colspan="2">
+				<td colspan="2" rowspan="2">
 					<?=$_SESSION['data']['seed_record_collection_result'][0]['g_viab'] ?? "&nbsp;";?>
 				</td>
 			</tr>
@@ -222,67 +222,8 @@
 				<td colspan="3" class="text-left b-l-n">: 
 					<?=$_SESSION['data']['seed_record_collection_result'][0]['ph'] ?? "n/a";?>
 				</td>
-				<td colspan="1" class="b-r-n">Date</td>
-				<td colspan="4" class="text-left b-l-n">: 
-					<?=$_SESSION['data']['seed_record_collection_result'][0]['seed_date'] ?? "n/a";?>
-				</td>
-				<td colspan="5" class="b-n"></td>
-			</tr>
-			<tr>
-				<td colspan="5">&nbsp;</td>
-				<td colspan="5">&nbsp;</td>
-				<td colspan="5">&nbsp;</td>
-			</tr>
-			<tr>
-				<td colspan="5">&nbsp;</td>
-				<td colspan="5">&nbsp;</td>
-				<td colspan="5">&nbsp;</td>
-			</tr>
-			<tr>
-				<td colspan="5" class="text-left">SeedLot No</td>
-				<!-- <td colspan="3" class="text-left">: 
-				</td> -->
-				<td colspan="5">Distribution</td>
-				<td colspan="2" class="text-left b-r-n">Amount Received</td>
-				<td colspan="3" class="text-left b-l-n">: 
-					<!-- //value -->
-				</td>
-			</tr>
-			<tr>
-				<td colspan="5">&nbsp;</td>
-				<td colspan="5">&nbsp;</td>
-				<td colspan="5">&nbsp;</td>
-			</tr>
-			<tr>
-				<td colspan="2"><b>File No</b></td>
-				<td colspan="3"><b>Date</b></td>
-				<td colspan="5"><b>Consignee</b></td>
-				<td colspan="2"><b>Amount Sent</b></td>
-				<td colspan="3"><b>Amount Left</b></td>
-			</tr>
-			<?php for($i = 0; $i<(count($_SESSION['data']['seed_record_other_result'])); $i++) {?>
-				<tr>
-					<td colspan="2">
-						<?=$_SESSION['data']['seed_record_other_result'][$i]['file_no'] ?? "n/a";?>
-					</td>
-					<td colspan="3">
-						<?=$_SESSION['data']['seed_record_other_result'][$i]['consignee_date'] ?? "n/a";?>
-					</td>
-					<td colspan="5">
-						<?=$_SESSION['data']['seed_record_other_result'][$i]['consignee'] ?? "n/a";?>
-					</td>
-					<td colspan="2">
-						<?=$_SESSION['data']['seed_record_other_result'][$i]['amount_sent'] ?? "n/a";?>
-					</td>
-					<td colspan="3">
-						<?=$_SESSION['data']['seed_record_other_result'][$i]['amount_left'] ?? "n/a";?>
-					</td>
-				</tr>
-			<?php } ?>
-
-			<tr>
-				<td colspan="15" class="text-right">
-					date printed : <?=date('m/d/Y');?>&nbsp;&nbsp;
+				<td colspan="5" class="text-left b-l-n">
+					&nbsp;
 				</td>
 			</tr>
 		</table>
@@ -290,8 +231,7 @@
 
 		<table class="tos small">
 			<tr>
-				<td colspan="2" class="b-b-n">Seedlot No</td>
-				<td class="b-b-n">Seedlot No</td>
+				<td colspan="3" class="b-b-n text-left">Seedlot No : <?=$_SESSION['data']['seed_record_collection_result'][0]['seedlot_no'] ?? "n/a";?></td>
 				<td colspan="5" class="b-b-n">&nbsp;</td>
 				<td colspan="3" rowspan="2" class="b-b-n">Storage</td>
 				<td colspan="5" rowspan="2" class="b-b-n">Dispatch</td>
@@ -317,7 +257,10 @@
 				<td colspan="1" class="b-b-n">Released</td>
 				<td colspan="1" class="b-b-n">Balance</td>
 			</tr>
-
+			<?php 
+			$total_released = 0;
+			$total_balance = 0;
+			?>
 			<?php for($i = 0; $i<(count($_SESSION['data']['seed_record_other_result'])); $i++) {?>
 				<tr>
 					<td colspan="1">
@@ -360,13 +303,23 @@
 						<?=$_SESSION['data']['seed_record_other_result'][$i]['consignee'] ?? "n/a";?>
 					</td>
 					<td colspan="1">
-						<?=$_SESSION['data']['seed_record_other_result'][$i]['Released'] ?? "n/a";?>
+						<?=$_SESSION['data']['seed_record_other_result'][$i]['released'] ?? 0;?>
 					</td>
 					<td colspan="1">
-						<?=$_SESSION['data']['seed_record_other_result'][$i]['Balance'] ?? "n/a";?>
+						<?=$_SESSION['data']['seed_record_other_result'][$i]['balance'] ?? 0;?>
 					</td>
 				</tr>
+					<?php 
+					$total_released += $_SESSION['data']['seed_record_other_result'][$i]['released'] ?? 0;
+					$total_balance += $_SESSION['data']['seed_record_other_result'][$i]['balance'] ?? 0;
+					?>
 			<?php } ?>
+
+				<tr>
+					<td colspan="14" class="text-right">Total:</td>
+					<td><?=$total_released;?></td>
+					<td><?=$total_balance;?></td>
+				</tr>
 
 
 		</table>
