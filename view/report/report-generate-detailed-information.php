@@ -73,12 +73,7 @@
 </head>
 <body>
 
-	<div style="width: 100%;position:absolute;height:160px;">
-		<div style="text-align: center;margin-top:10px;">
-			<label style="font-size: 18px;"><b>DETAILED INFORMATION ON IDETIFIED SEED SOURCE </b></label><br>
-		</div>
-	</div>
-	<?php $title = "DETAILED INFORMATION ON IDETIFIED SEED SOURCE";?>
+	<?php $title = "DETAILED INFORMATION ON IDENTIFIED SEED SOURCE";?>
 	<?php include 'default_title.php'; ?><br><br>
 
 

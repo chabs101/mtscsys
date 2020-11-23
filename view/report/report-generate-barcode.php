@@ -106,7 +106,7 @@ $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
 </head>
 <body>
 
-	<?php $title = "GENERATE BARCODE");?>
+	<?php $title = "GENERATE BARCODE";?>
 	<?php include 'default_title.php'; ?><br><br>
 
 

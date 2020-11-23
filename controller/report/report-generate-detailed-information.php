@@ -29,7 +29,8 @@ if(isset($_GET['search'])) {
 	$dompdf->load_html($content);
 	$dompdf->set_paper("legal","landscape");
 	$dompdf->render();
-	$dompdf->stream("GENERATE SEED RECORD.pdf",array("Attachment" => 0));
+	ob_end_clean();
+	$dompdf->stream("GENERATE DETAILED INFORMATION ON IDENTIFIED SEED SOURCE.pdf",array("Attachment" => 0));
 }
 
 ?>

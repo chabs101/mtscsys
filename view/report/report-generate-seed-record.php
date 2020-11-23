@@ -1,3 +1,9 @@
+<?php 
+include('../Barcode/BarcodeGenerator.php');
+include('../Barcode/BarcodeGeneratorPNG.php');
+$generator = new Picqer\Barcode\BarcodeGeneratorPNG();
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,11 +79,18 @@
 		.small {
 			font-size: x-small !important;
 		}
+		.barcode {
+			height:40px; 
+			width:150px;
+			margin-top: 5px;
+			padding: 0px 13px 3px 13px;
+		}
 	</style>
 </head>
 <body>
 
 	<?php $title = "SEED RECORD CARD";?>
+	<?php $barcode = $_SESSION['data']['seed_record_collection_result'][0]['prefix_id'];?>
 	<?php include 'default_title.php'; ?><br><br>
 
 
@@ -85,18 +98,16 @@
 
 		<table class="tos small">
 			<tr>
-				<td colspan="3" class="b-b-n">SeedLot No.</td>
-				<td colspan="3" class="b-b-n">Species Code</td>
-				<td colspan="3" class="b-b-n">Botanical Name</td>
+				<td colspan="4" class="b-b-n">Species Code</td>
+				<td colspan="4" class="b-b-n">Botanical Name</td>
 				<td colspan="3" class="b-b-n">Store Code</td>
-				<td colspan="3" class="b-b-n">Cost Code</td>
+				<td colspan="4" class="b-b-n">SeedLot No.</td>
 			</tr>
 			<tr>
-				<td colspan="3" class="b-t-n"><?=$_SESSION['data']['seed_record_collection_result'][0]['seedlot_no'] ?? "n/a";?></td>
-				<td colspan="3" class="b-t-n"><?=$_SESSION['data']['seed_record_collection_result'][0]['species_code'] ?? "n/a";?></td>
-				<td colspan="3" class="b-t-n"><?=$_SESSION['data']['seed_record_collection_result'][0]['botanical_name'] ?? "n/a";?></td>
+				<td colspan="4" class="b-t-n"><?=$_SESSION['data']['seed_record_collection_result'][0]['species_code'] ?? "n/a";?></td>
+				<td colspan="4" class="b-t-n"><?=$_SESSION['data']['seed_record_collection_result'][0]['botanical_name'] ?? "n/a";?></td>
 				<td colspan="3" class="b-t-n"><?=$_SESSION['data']['seed_record_collection_result'][0]['store_code'] ?? "n/a";?></td>
-				<td colspan="3" class="b-t-n"><?=$_SESSION['data']['seed_record_collection_result'][0]['cost_code'] ?? "n/a";?></td>
+				<td colspan="4" class="b-t-n"><?=$_SESSION['data']['seed_record_collection_result'][0]['seedlot_no'] ?? "n/a";?></td>
 			</tr>
 			<tr>
 				<td colspan="5">EXACT LOCALITY OF COLLECTION</td>
@@ -179,7 +190,9 @@
 				<td colspan="3" class="text-left">Longitude (°E'): 
 					<?=$_SESSION['data']['seed_record_collection_result'][0]['longi'] ?? "n/a";?>
 				</td>
-				<td colspan="5">DATE</td>
+				<td colspan="1" rowspan="2">Method</td>
+				<td colspan="2">DATE</td>
+				<td colspan="2" rowspan="2">Viability/10g(%)</td>
 			</tr>
 
 			<tr>
@@ -193,10 +206,8 @@
 					<?=$_SESSION['data']['seed_record_collection_result'][0]['slope'] ?? "n/a";?>
 				 </td>
 				<td colspan="5" class="text-left b-b-n">Fumigation Method :</td>
-				<td colspan="1">Method</td>
 				<td colspan="1">From</td>
 				<td colspan="1">To</td>
-				<td colspan="2">Viability/10g(%)</td>
 			</tr>
 			<tr>
 				<td colspan="2" class="text-left b-r-n">Geology and Soil</td>
@@ -231,14 +242,10 @@
 
 		<table class="tos small">
 			<tr>
-				<td colspan="3" class="b-b-n text-left">Seedlot No : <?=$_SESSION['data']['seed_record_collection_result'][0]['seedlot_no'] ?? "n/a";?></td>
-				<td colspan="5" class="b-b-n">&nbsp;</td>
-				<td colspan="3" rowspan="2" class="b-b-n">Storage</td>
-				<td colspan="5" rowspan="2" class="b-b-n">Dispatch</td>
-			</tr>
-			<tr>
-				<td colspan="3" class="b-b-n">&nbsp;</td>
-				<td colspan="5" class="b-b-n">&nbsp;</td>
+				<td colspan="3" class="b-b-n">Description</td>
+				<td colspan="5" class="b-b-n">Seed Test</td>
+				<td colspan="3" class="b-b-n">Storage</td>
+				<td colspan="5" class="b-b-n">Dispatch</td>
 			</tr>
 			<tr>
 				<td colspan="1" class="b-b-n">Tree No.</td>

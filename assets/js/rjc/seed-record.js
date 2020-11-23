@@ -13,8 +13,8 @@
     var seedRecordBtncontainer = document.querySelector("#seed-record-btn-container");
 
     dataSeedCollection = {};
-    tobeDeleteSeedGerminationData = [];
-    tobeDeleteSeedConsigneeData = [];
+    // tobeDeleteSeedGerminationData = [];
+    // tobeDeleteSeedConsigneeData = [];
     // seedRecordModal.show();
     document.addEventListener('keyup', (e) => {
         e.preventDefault();
@@ -34,7 +34,7 @@
                         <div class="col-lg-1">\
                             <div class="form-group">\
                                 <label class="control-label">Tree No</label>\
-                                <input class="form-control form-control-sm tree_no" type="number" name="tree_no[]"/>\
+                                <input class="form-control form-control-sm tree_no" disabled="true" type="text" maxlength="11" name="tree_no[]"/>\
                             </div>\
                         </div>\
                         <div class="col-lg-2">\
@@ -76,7 +76,7 @@
                         <div class="col-lg-1">\
                             <div class="form-group">\
                                 <label class="control-label">Seed Wt(g)</label>\
-                                <input class="form-control form-control-sm seed_weight" type="number" name="seed_weight[]"/>\
+                                <input class="form-control form-control-sm seed_weight" disabled="true" type="number" name="seed_weight[]"/>\
                             </div>\
                         </div>\
                     </div>\
@@ -110,8 +110,8 @@
                     <div class="col-lg-3">\
                         <div class="form-group">\
                             <label class="control-label">Date</label>\
-                            <input class="form-control form-control-sm seed_record_other_id" type="hidden" name="seed_record_other_id[]">\
-                            <input class="form-control form-control-sm seed_record_id" type="hidden" name="seed_record_id[]">\
+                            <input class="form-control form-control-sm seed_collection_other_id" type="hidden" name="seed_collection_other_id[]">\
+                            <input class="form-control form-control-sm seed_collection_id" type="hidden" name="seed_collection_id[]">\
                             <input class="form-control form-control-sm consignee_date" type="date" name="consignee_date[]">\
                         </div>\
                     </div>\
@@ -135,7 +135,7 @@
                     </div>\
                     <div class="col-lg-1">\
                             <label class="control-label"> &nbsp;</label>\
-                        <button class="btn btn-sm btn-danger form-control form-control-sm remove-consignee-btn" type="button"><span class="fa fa-times"></span></button>\
+                        <button class="btn btn-sm btn-danger form-control form-control-sm remove-consignee-btn d-none" type="button"><span class="fa fa-times"></span></button>\
                     </div>\
                 </div>\
                 </div>';
@@ -228,20 +228,20 @@
         }
     });
     seedRecordOtherModalBtn.addEventListener('click',(el) => {
-        seedRecordOtherCollection(el.target.getAttribute('data-seed-record-id'));
-        console.log(el.target.getAttribute('data-seed-record-id'))
+        seedRecordOtherCollection(el.target.getAttribute('data-seed-collection-id'));
+        console.log(el.target.getAttribute('data-seed-collection-id'))
         seedConsigneeModal.show();
     });
 
 
-    document.querySelector("#insert-row-consignee-btn").addEventListener('click', () => {
-        inputFormRef = document.querySelector("#consignee-inputs");
-        genDiv = document.createElement('div');
-        genDiv.innerHTML = consigneeInputDefault;
-        divLength = document.querySelectorAll(".consignee-input-default").length + 1;
-        genDiv.querySelector('.seed_record_id').value = seedRecordOtherModalBtn.getAttribute('data-seed-record-id');
-        inputFormRef.appendChild(genDiv);
-    });
+    // document.querySelector("#insert-row-consignee-btn").addEventListener('click', () => {
+    //     inputFormRef = document.querySelector("#consignee-inputs");
+    //     genDiv = document.createElement('div');
+    //     genDiv.innerHTML = consigneeInputDefault;
+    //     divLength = document.querySelectorAll(".consignee-input-default").length + 1;
+    //     genDiv.querySelector('.seed_collection_other_id').value = seedRecordOtherModalBtn.getAttribute('data-seed-collection-id');
+    //     inputFormRef.appendChild(genDiv);
+    // });
 
             seedCollectionBtn.addEventListener('click', async()=> {
                 const formData = new FormData(seedRecordForm);
@@ -336,43 +336,43 @@
 
             });
 
-    document.addEventListener('click', e => {
-        var targetElement = e.target || e.srcElement;
-        if(e.target.closest('.remove-consignee-btn')) {
-            console.log(e.target.localName);
-            if(document.querySelectorAll('.remove-consignee-btn').length  > 1) {
+    // document.addEventListener('click', e => {
+    //     var targetElement = e.target || e.srcElement;
+    //     if(e.target.closest('.remove-consignee-btn')) {
+    //         console.log(e.target.localName);
+    //         if(document.querySelectorAll('.remove-consignee-btn').length  > 1) {
 
-                if(e.target.localName != 'button') {
-                    var parentNodeTobeRemove = targetElement.parentNode.parentNode.parentNode.parentNode;
-                    console.log(parentNodeTobeRemove)
-                    getId =  parentNodeTobeRemove.querySelector('.seed_record_other_id').value;
-                    tobeDeleteSeedConsigneeData.push(getId);    
-                    parentNodeTobeRemove.remove();
-                    // console.log(tobeDeleteSeedConsigneeData);
-                    return;
-                }
+    //             if(e.target.localName != 'button') {
+    //                 var parentNodeTobeRemove = targetElement.parentNode.parentNode.parentNode.parentNode;
+    //                 console.log(parentNodeTobeRemove)
+    //                 getId =  parentNodeTobeRemove.querySelector('.seed_collection_other_id').value;
+    //                 tobeDeleteSeedConsigneeData.push(getId);    
+    //                 parentNodeTobeRemove.remove();
+    //                 // console.log(tobeDeleteSeedConsigneeData);
+    //                 return;
+    //             }
 
                 
-                var parentNodeTobeRemove = targetElement.parentNode.parentNode.parentNode;
-                console.log(parentNodeTobeRemove)
-                getId =  parentNodeTobeRemove.querySelector('.seed_record_other_id').value;
-                tobeDeleteSeedConsigneeData.push(getId);
-                parentNodeTobeRemove.remove();
-                // console.log(tobeDeleteSeedConsigneeData);
-                return;
+    //             var parentNodeTobeRemove = targetElement.parentNode.parentNode.parentNode;
+    //             console.log(parentNodeTobeRemove)
+    //             getId =  parentNodeTobeRemove.querySelector('.seed_collection_other_id').value;
+    //             tobeDeleteSeedConsigneeData.push(getId);
+    //             parentNodeTobeRemove.remove();
+    //             // console.log(tobeDeleteSeedConsigneeData);
+    //             return;
 
-            }
-        }
-    });
+    //         }
+    //     }
+    // });
 
 
     document.querySelector("#modal-consignee-submit-btn").addEventListener('click', async (e) => {
         e.preventDefault();
         const formData = new FormData(document.querySelector("#seedConsigneeForm"));
 
-        for(var i in tobeDeleteSeedConsigneeData) {
-            formData.append("tobeDelete_id[]",tobeDeleteSeedConsigneeData[i]);
-        }
+        // for(var i in tobeDeleteSeedConsigneeData) {
+        //     formData.append("tobeDelete_id[]",tobeDeleteSeedConsigneeData[i]);
+        // }
 
         fetch('../controller/api/seed-record/save-seed-record-other.php', {
            method: 'POST',
@@ -434,7 +434,7 @@
             document.querySelector("#g_viab").value                      = (editRow.g_viab ?? ""); 
 
             editRow.seed_record_id ? seedRecordBtncontainer.hidden = false : seedRecordBtncontainer.hidden = true;
-            seedRecordOtherModalBtn.setAttribute("data-seed-record-id",editRow.seed_record_id);
+            seedRecordOtherModalBtn.setAttribute("data-seed-collection-id",editRow.seed_collection_id);
     }
                  
 
@@ -459,8 +459,8 @@
                         console.log(data);
                         genDiv = document.createElement('div');
                         genDiv.innerHTML = consigneeInputDefault;
-                        genDiv.querySelector('.seed_record_other_id').value = data.seed_record_other_id ?? "";
-                        genDiv.querySelector('.seed_record_id').value = data.seed_record_id ?? "";
+                        genDiv.querySelector('.seed_collection_other_id').value = data.seed_collection_other_id ?? "";
+                        genDiv.querySelector('.seed_collection_id').value = data.seed_collection_id ?? "";
                         genDiv.querySelector('.consignee_date').value = moment(data.consignee_date).format('YYYY-MM-D');
                         genDiv.querySelector('.consignee').value    = data.consignee ?? "";
                         genDiv.querySelector('.released').value     = data.released ?? "";
@@ -484,7 +484,7 @@
 
                 genDiv = document.createElement('div');
                 genDiv.innerHTML = consigneeInputDefault;
-                genDiv.querySelector('.seed_record_id').value = seedRecordOtherModalBtn.getAttribute('data-seed-record-id');
+                genDiv.querySelector('.seed_collection_other_id').value = seedRecordOtherModalBtn.getAttribute('data-seed-collection-id');
                 inputFormRef.appendChild(genDiv);
 
             });

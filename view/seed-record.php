@@ -440,7 +440,7 @@
 
                 <div class="col-lg-12">
                         <label class="control-label"> &nbsp;</label>
-                    <button class="btn btn-sm btn-success form-control form-control-sm" type="button" id="insert-row-consignee-btn"><span class="fa fa-plus"></span>
+                    <button class="btn btn-sm btn-success form-control form-control-sm d-none" type="button" id="insert-row-consignee-btn"><span class="fa fa-plus"></span>
                         INSERT ROW
                     </button>
                 </div>

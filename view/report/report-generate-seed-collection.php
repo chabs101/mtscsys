@@ -1,3 +1,9 @@
+<?php 
+include('../Barcode/BarcodeGenerator.php');
+include('../Barcode/BarcodeGeneratorPNG.php');
+$generator = new Picqer\Barcode\BarcodeGeneratorPNG();
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -104,6 +110,7 @@
 		</div>
 	</div> -->
 	<?php $title = "SEED COLLECTION DATA SHEET";?>
+	<?php $barcode = $_SESSION['data']['seed_result'][0]['prefix_id'];?>
 	<?php include 'default_title.php'; ?><br><br>
 
 
@@ -136,11 +143,6 @@
 				<td colspan="3" class="text-left b-r-n">Philippine Climate Type</td>
 				<td colspan="2" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['ph_climatic_type'] ?? "n/a";?></td>
 			</tr>
-			<tr>
-				<td colspan="14">
-					&nbsp;
-				</td>
-			</tr>
 
 			<tr>
 				<td colspan="1" class="text-left b-r-n">Vegetation Structure:</td>
@@ -157,213 +159,115 @@
 				<td colspan="2" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['sp_freq'] ?? "n/a";?></td>
 				<td colspan="2" class="text-left b-r-n">pH</td>
 				<td colspan="2" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['ph'] ?? "n/a";?></td>
-				<td colspan="2" rowspan="5"><?=$_SESSION['data']['seed_result'][0]['assoc_inc'] ?? "&nbsp;";?></td>
-				<td colspan="1" rowspan="5"><?=$_SESSION['data']['seed_result'][0]['freq'] ?? "&nbsp;";?></td>
-				<td colspan="1" rowspan="5"><?=$_SESSION['data']['seed_result'][0]['ht_m'] ?? "&nbsp;";?></td>
-				<td colspan="3" rowspan="5"><?=$_SESSION['data']['seed_result'][0]['comments'] ?? "&nbsp;";?></td>
+				<td colspan="2"><?=$_SESSION['data']['assoc_result'][0]['assoc_inc'] ?? "&nbsp;";?></td>
+				<td colspan="1"><?=$_SESSION['data']['assoc_result'][0]['freq'] ?? "&nbsp;";?></td>
+				<td colspan="1"><?=$_SESSION['data']['assoc_result'][0]['ht_m'] ?? "&nbsp;";?></td>
+				<td colspan="3"><?=$_SESSION['data']['assoc_result'][0]['comments'] ?? "&nbsp;";?></td>
 
 			</tr>
 			<tr>
 				<td colspan="1" class="text-left b-r-n">Slope</td>
 				<td colspan="6" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['slope'] ?? "n/a";?></td>
+				<td colspan="2"><?=$_SESSION['data']['assoc_result'][1]['assoc_inc'] ?? "&nbsp;";?></td>
+				<td colspan="1"><?=$_SESSION['data']['assoc_result'][1]['freq'] ?? "&nbsp;";?></td>
+				<td colspan="1"><?=$_SESSION['data']['assoc_result'][1]['ht_m'] ?? "&nbsp;";?></td>
+				<td colspan="3"><?=$_SESSION['data']['assoc_result'][1]['comments'] ?? "&nbsp;";?></td>
 			</tr>
 			<tr>
 				<td colspan="1" class="text-left b-r-n">Seed Crop</td>
 				<td colspan="2" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['seed_crop'] ?? "n/a";?></td>
 				<td colspan="2" class="text-left b-r-n">Predation Status</td>
 				<td colspan="2" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['predation_status'] ?? "n/a";?></td>
+				<td colspan="2"><?=$_SESSION['data']['assoc_result'][2]['assoc_inc'] ?? "&nbsp;";?></td>
+				<td colspan="1"><?=$_SESSION['data']['assoc_result'][2]['freq'] ?? "&nbsp;";?></td>
+				<td colspan="1"><?=$_SESSION['data']['assoc_result'][2]['ht_m'] ?? "&nbsp;";?></td>
+				<td colspan="3"><?=$_SESSION['data']['assoc_result'][2]['comments'] ?? "&nbsp;";?></td>
 			</tr>
 			<tr>
 				<td colspan="1" class="text-left b-r-n">Bud</td>
 				<td colspan="6" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['bud'] ?? "n/a";?></td>
+				<td colspan="2"><?=$_SESSION['data']['assoc_result'][3]['assoc_inc'] ?? "&nbsp;";?></td>
+				<td colspan="1"><?=$_SESSION['data']['assoc_result'][3]['freq'] ?? "&nbsp;";?></td>
+				<td colspan="1"><?=$_SESSION['data']['assoc_result'][3]['ht_m'] ?? "&nbsp;";?></td>
+				<td colspan="3"><?=$_SESSION['data']['assoc_result'][3]['comments'] ?? "&nbsp;";?></td>
 			</tr>
 			<tr>
 				<td colspan="1" class="text-left b-r-n">Flowers</td>
 				<td colspan="6" class="text-left b-l-n">: <?=$_SESSION['data']['seed_result'][0]['flower'] ?? "n/a";?></td>
+				<td colspan="2"><?=$_SESSION['data']['assoc_result'][4]['assoc_inc'] ?? "&nbsp;";?></td>
+				<td colspan="1"><?=$_SESSION['data']['assoc_result'][4]['freq'] ?? "&nbsp;";?></td>
+				<td colspan="1"><?=$_SESSION['data']['assoc_result'][4]['ht_m'] ?? "&nbsp;";?></td>
+				<td colspan="3"><?=$_SESSION['data']['assoc_result'][4]['comments'] ?? "&nbsp;";?></td>
 			</tr>
+			<!-- incase 4+ assoc -->
+			<?php for($i = 4; $i<(count($_SESSION['data']['assoc_result'])); $i++) {?>
+				<tr>
+					<td colspan="7" class="text-left b-r-n"></td>
+					<td colspan="2"><?=$_SESSION['data']['assoc_result'][$i]['assoc_inc'] ?? "&nbsp;";?></td>
+					<td colspan="1"><?=$_SESSION['data']['assoc_result'][$i]['freq'] ?? "&nbsp;";?></td>
+					<td colspan="1"><?=$_SESSION['data']['assoc_result'][$i]['ht_m'] ?? "&nbsp;";?></td>
+					<td colspan="3"><?=$_SESSION['data']['assoc_result'][$i]['comments'] ?? "&nbsp;";?></td>
+				</tr>
+			<?php } ?>
+			<!--  -->
+			<tr>
+				<td rowspan="2">Tree No</td>
+				<td rowspan="2">Total</td>
+				<td rowspan="2">Age</td>
+				<td colspan="2">Bole</td>
+				<td colspan="5">Ht</td>
+				<td rowspan="2" colspan="2">Description/Notes</td>
+				<td rowspan="2">Seed Weight(g)</td>
+				<td rowspan="2">Viab/10g</td>
+			</tr>
+			<tr>
+				<td>dbh(cm)</td>
+				<td>Form</td>
+				<td>Den</td>
+				<td>Branch</td>
+				<td>Width</td>
+				<td>MH</td>
+				<td>TH</td>
+			</tr>
+			<?php
+				$seed_Weight_total = 0;
+			?>
+			<?php for($i = 0; $i<(count($_SESSION['data']['seed_other_result'])); $i++) {?>
+				<tr>
+					<td><?=$_SESSION['data']['seed_other_result'][$i]['tree_no'] ?? "&nbsp;";?></td>
+					<td><?=$_SESSION['data']['seed_other_result'][$i]['total'] ?? "&nbsp;";?></td>
+					<td><?=$_SESSION['data']['seed_other_result'][$i]['age_'] ?? "&nbsp;";?></td>
+					<td><?=$_SESSION['data']['seed_other_result'][$i]['dbh'] ?? "&nbsp;";?></td>
+					<td><?=$_SESSION['data']['seed_other_result'][$i]['form_'] ?? "&nbsp;";?></td>
+					<td><?=$_SESSION['data']['seed_other_result'][$i]['den'] ?? "&nbsp;";?></td>
+					<td><?=$_SESSION['data']['seed_other_result'][$i]['branch'] ?? "&nbsp;";?></td>
+					<td><?=$_SESSION['data']['seed_other_result'][$i]['width_'] ?? "&nbsp;";?></td>
+					<td><?=$_SESSION['data']['seed_other_result'][$i]['mh_'] ?? "&nbsp;";?></td>
+					<td><?=$_SESSION['data']['seed_other_result'][$i]['th_'] ?? "&nbsp;";?></td>
+					<td colspan="2"><?=$_SESSION['data']['seed_other_result'][$i]['description'] ?? "&nbsp;";?></td>
+					<td><?=$_SESSION['data']['seed_other_result'][$i]['seed_weight'] ?? "&nbsp;";?></td>
+					<td><?=$_SESSION['data']['seed_other_result'][$i]['viab_percent'] ?? "&nbsp;";?></td>
+				</tr>
+				<?php 
+					$seed_Weight_total += $_SESSION['data']['seed_other_result'][$i]['seed_weight'] ?? 0;
+				?>
+			<?php } ?>
 
 			<tr>
-				<td colspan="14" class="text-left b-l-n">&nbsp;</td>
-			</tr>
-
-			<tr>
-				<td colspan="1" rowspan="2" class="text-left b-r-n" style="vertical-align: top;">Description/notes</td>
-				<td colspan="9" rowspan="2" class="text-left b-l-n" style="vertical-align: top;">: <?=$_SESSION['data']['seed_result'][0]['description'] ?? "&nbsp;";?></td>
-				<td colspan="2">Seed Weight(g)</td>
-				<td colspan="2">Viab/10g</td>
-			</tr>
-			<tr>
-				<td colspan="2"><?=$_SESSION['data']['seed_result'][0]['seed_weight'] ?? "&nbsp;";?></td>
-				<td colspan="2"><?=$_SESSION['data']['seed_result'][0]['viab'] ?? "&nbsp;";?></td>
-			</tr>
-			<tr>
-				<td colspan="1" class="text-left b-n">Collected as bulk</td>
-				<td colspan="13" class="text-left b-n">: <?=$_SESSION['data']['seed_result'][0]['collect_as_bulk'] ?? "&nbsp;";?></td>
-			</tr>
-			<tr>
-				<td colspan="1" class="text-left b-n">Individuals</td>
-				<td colspan="13" class="text-left b-n">: <?=$_SESSION['data']['seed_result'][0]['individuals'] ?? "&nbsp;";?></td>
-			</tr>
-			<tr>
-				<td colspan="1" class="text-left b-n">Total</td>
-				<td colspan="13" class="text-left b-n">: 
-					<!-- <?=$_SESSION['data']['seed_result'][0]['individuals']+$_SESSION['data']['seed_result'][0]['collect_as_bulk'] ?? "&nbsp;";?> -->
+				<td colspan="6" rowspan="2" class="text-left">Team: <?=$_SESSION['data']['seed_result'][0]['team'] ?? "&nbsp;";?></td>
+				<td colspan="3" rowspan="2" class="text-left">Date: <?=$_SESSION['data']['seed_result'][0]['seed_date'] ?? "&nbsp;";?></td>
+				<td colspan="3" class="text-left b-b-n">
+					Collected as Bulk: <?=$_SESSION['data']['seed_result'][0]['collect_as_bulk'] ?? "&nbsp;";?> <br>
 				</td>
+				<td rowspan="2"><?=$seed_Weight_total ?? 0?></td>
+				<td rowspan="2"></td>
+			</tr>
+			<tr>
+				<td colspan="3" class="text-left b-t-n">Individuals: <?=$_SESSION['data']['seed_result'][0]['individuals'] ?? "&nbsp;";?></td>
 			</tr>
 
-<!-- 			<tr>
-				<td colspan="5">EXACT LOCALITY OF COLLECTION</td>
-				<td colspan="5">PARENT TREE(S)</td>
-				<td colspan="5">SEED</td>
-			</tr>
-			<tr>
-				<td colspan="5" rowspan="4" class="text-left b-b-n" style="text-align:left;vertical-align: top;">
-						Address: <br>
-						as lkdaskldasl kdaskld askld askld askldkasldlk asdklaskl askldaksl dlksa
-				</td>
-				
-				<td colspan="1" rowspan="2" class="text-left b-r-n">No <br>of<br> Parents</td>
-				<td colspan="1" class="text-left b-n">Bulk</td>
-				<td colspan="3" class="text-left b-n">: bulk value</td>
 
-				<td colspan="1" class="text-left b-r-n">Collector</td>
-				<td colspan="4" class="text-left b-l-n">: value</td>
-			</tr>
-			<tr>
-				
-				<td colspan="1" class="text-left b-n">Tree</td>
-				<td colspan="3" class="text-left b-n">: tree Value</td>
-				
-				<td colspan="1" class="text-left b-r-n">Collector's No</td>
-				<td colspan="4" class="text-left b-l-n">: value</td>
-			</tr>
-			<tr>
 
-				<td colspan="1" class="text-left b-r-n">D.B.H (cm)</td>
-				<td colspan="4" class="text-left b-l-n">: dbh value</td>
-				
-				<td colspan="1" class="text-left b-r-n">Project</td>
-				<td colspan="4" class="text-left b-l-n">: value</td>
-			</tr>
-			<tr>
-
-				<td colspan="1" class="text-left  b-r-n">Total Height</td>
-				<td colspan="4" class="text-left  b-l-n">: dbh value</td>
-				
-				<td colspan="1" class="text-left  b-r-n">Project</td>
-				<td colspan="4" class="text-left  b-l-n">: value</td>
-			</tr>
-			<tr>
-				<td colspan="5" class="b-n"></td>
-
-				<td colspan="1" class="text-left b-r-n">Form</td>
-				<td colspan="4" class="text-left b-l-n">: dbh value</td>
-				
-				<td colspan="1" class="text-left  b-r-n">Project</td>
-				<td colspan="4" class="text-left  b-l-n">: value</td>
-			</tr>
-			<tr>
-				<td colspan="5" class="b-n"></td>
-
-				<td colspan="1" rowspan="4" class="text-left b-r-n" style="text-align:left;vertical-align: top;">Remarks</td>
-				<td colspan="4" rowspan="4" class="text-left b-n" style="text-align:left;vertical-align: top;">: remarkaskd laskld aslkd askld aslk dakls sadkl askdl askl dakls value</td>
-				
-				<td colspan="1" class="text-left b-r-n">Storage</td>
-				<td colspan="4" class="text-left b-l-n">: value</td>
-			</tr>
-			<tr>
-				<td colspan="5" class="b-n"></td>
-				
-				<td colspan="1" class="text-left b-r-n">Quantity</td>
-				<td colspan="4" class="text-left b-l-n">: value</td>
-			</tr>
-			<tr>
-				<td colspan="5" class="b-n"></td>
-				
-				<td colspan="5">GERMINATION</td>
-			</tr>
-
-			<tr>
-				<td colspan="2" class="text-left">Latitude (°N'): asdasdaskda</td>
-				<td colspan="3" class="text-left">Longitude (°E'): asdasdaskda</td>
-				<td colspan="5">DATE</td>
-			</tr>
-
-			<tr>
-				<td colspan="3" class="text-left">Altitude (m): asdasdaskda</td>
-				<td colspan="1" class="text-left">Aspect : asdasdaskda</td>
-				<td colspan="1" class="text-left">Slope : </td>
-				<td colspan="5" class="text-left">Fumigation Method</td>
-				<td colspan="1">Method</td>
-				<td colspan="1">From</td>
-				<td colspan="1">To</td>
-				<td colspan="2">Viability/10g(%)</td>
-			</tr>
-			<tr>
-				<td colspan="2" class="text-left b-r-n">Geology and Soil</td>
-				<td colspan="3" class="text-left b-l-n">: Value</td>
-				<td colspan="5">Fumigation method value</td>
-				<td colspan="1">Method value</td>
-				<td colspan="1">From value</td>
-				<td colspan="1">To value</td>
-				<td colspan="2">viab value</td>
-			</tr>
-			<tr>
-				<td colspan="2" class="text-left b-r-n">pH</td>
-				<td colspan="3" class="text-left b-l-n">: ph value</td>
-				<td colspan="1" class="b-r-n">Date</td>
-				<td colspan="4" class="text-left b-l-n">: date value</td>
-				<td colspan="5" class="b-n"></td>
-			</tr>
-			<tr>
-				<td colspan="5">&nbsp;</td>
-				<td colspan="5">&nbsp;</td>
-				<td colspan="5">&nbsp;</td>
-			</tr>
-			<tr>
-				<td colspan="5">&nbsp;</td>
-				<td colspan="5">&nbsp;</td>
-				<td colspan="5">&nbsp;</td>
-			</tr>
-			<tr>
-				<td colspan="2" class="text-left">SeedLot No</td>
-				<td colspan="3" class="text-left">: value</td>
-				<td colspan="5">Distribution</td>
-				<td colspan="2" class="text-left b-r-n">Amount Received</td>
-				<td colspan="3" class="text-left b-l-n">: value</td>
-			</tr>
-			<tr>
-				<td colspan="5">&nbsp;</td>
-				<td colspan="5">&nbsp;</td>
-				<td colspan="5">&nbsp;</td>
-			</tr>
-			<tr>
-				<td colspan="2"><b>File No</b></td>
-				<td colspan="3"><b>Date</b></td>
-				<td colspan="5"><b>Consignee</b></td>
-				<td colspan="2"><b>Amount Sent</b></td>
-				<td colspan="3"><b>Amount Left</b></td>
-			</tr>
-			<tr>
-				<td colspan="2">value</td>
-				<td colspan="3">value</td>
-				<td colspan="5">value</td>
-				<td colspan="2">value</td>
-				<td colspan="3">value</td>
-			</tr>
-			<tr>
-				<td colspan="2">value</td>
-				<td colspan="3">value</td>
-				<td colspan="5">value</td>
-				<td colspan="2">value</td>
-				<td colspan="3">value</td>
-			</tr>
-
-			<tr>
-				<td colspan="15" class="text-right">
-					date printed : mm/dd/yyyy &nbsp;&nbsp;
-				</td>
-			</tr> -->
 		</table>
 		<br><br>
 		<br><br>
