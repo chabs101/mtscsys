@@ -111,7 +111,7 @@
                         <div class="col-lg-3">\
                             <div class="form-group">\
                                 <label class="control-label">dbh (cm):</label>\
-                                <input class="form-control form-control-sm dbh" type="text" name="dbh[]"/>\
+                                <input class="form-control form-control-sm dbh" type="number" name="dbh[]"/>\
                             </div>\
                         </div>\
                         <div class="col-lg-3">\
@@ -134,25 +134,25 @@
                         <div class="col-lg-2">\
                             <div class="form-group">\
                                 <label class="control-label">Branch :</label>\
-                                <input class="form-control form-control-sm branch" type="text" name="branch[]"/>\
+                                <input class="form-control form-control-sm branch" type="number" name="branch[]"/>\
                             </div>\
                         </div>\
                         <div class="col-lg-2">\
                             <div class="form-group">\
                                 <label class="control-label">Width :</label>\
-                                <input class="form-control form-control-sm width_" type="text" name="width_[]">\
+                                <input class="form-control form-control-sm width_" type="number" name="width_[]">\
                             </div>\
                         </div>\
                         <div class="col-lg-2">\
                             <div class="form-group">\
                                 <label class="control-label">MH :</label>\
-                                <input class="form-control form-control-sm mh_" type="text" name="mh_[]"/>\
+                                <input class="form-control form-control-sm mh_" type="number" name="mh_[]"/>\
                             </div>\
                         </div>\
                         <div class="col-lg-2">\
                             <div class="form-group">\
                                 <label class="control-label">TH :</label>\
-                                <input class="form-control form-control-sm th_" type="text" name="th_[]"/>\
+                                <input class="form-control form-control-sm th_" type="number" name="th_[]"/>\
                             </div>\
                         </div>\
                     </div>\
@@ -166,13 +166,13 @@
                         <div class="col-lg-3">\
                             <div class="form-group">\
                                 <label class="control-label">Seed Weight(g):</label>\
-                                <input class="form-control form-control-sm seed_weight" type="text" name="seed_weight[]"/>\
+                                <input class="form-control form-control-sm seed_weight" type="number" name="seed_weight[]"/>\
                             </div>\
                         </div>\
                         <div class="col-lg-2">\
                             <div class="form-group">\
                                 <label class="control-label">Viab/10g:</label>\
-                                <input class="form-control form-control-sm viab_percent" type="text" name="viab_percent[]"/>\
+                                <input class="form-control form-control-sm viab_percent" type="number" name="viab_percent[]"/>\
                             </div>\
                         </div>\
                         <div class="col-lg-1">\
@@ -256,8 +256,10 @@
                         genAssocDiv.querySelector('.total').value = data.total ?? "";
                         genAssocDiv.querySelector('.age_').value = data.age_ ?? "";
                         genAssocDiv.querySelector('.den').value = data.den ?? "";
+                        genAssocDiv.querySelector('.dbh').value = data.dbh ?? "";
                         genAssocDiv.querySelector('.form_').value = data.form_ ?? "";
                         genAssocDiv.querySelector('.den').value = data.den ?? "";
+                        genAssocDiv.querySelector('.branch').value = data.branch ?? "";
                         genAssocDiv.querySelector('.width_').value = data.width_ ?? "";
                         genAssocDiv.querySelector('.mh_').value = data.mh_ ?? "";
                         genAssocDiv.querySelector('.th_').value = data.th_ ?? "";
