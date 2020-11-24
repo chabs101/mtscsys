@@ -5,6 +5,7 @@
     var seedConsigneeModal = new BSN.Modal("#seed-consignee-modal");
     var searchBtn = document.querySelector("#search-btn");
     var searchBar = document.querySelector("#search-input");
+    var searchOption = document.querySelector("#search_option");
     var printModal = new BSN.Modal("#printModal");
     var seedRecordForm = document.querySelector("#seedRecordForm");
     var seedCollectionBtn = document.querySelector("#seedCollectionBtn");
@@ -24,7 +25,14 @@
         }
 
     });
-    
+
+    searchOption.addEventListener("change",() => {
+        if(searchOption.value === "other_detail") {
+            searchBar.setAttribute("placeholder","Search tree_no/barcode");
+            return;
+        }
+        searchBar.setAttribute("placeholder","Search barcode/seed lot no/botanical name");
+    });
 
     consigneeInputDefault = '<div class="form-row consignee-input-default small border mt-4 p-2">\
                     <div class="row">\
@@ -142,14 +150,15 @@
 
     searchBar.addEventListener('keyup',(e)=> {
        if(e.keyCode == 13) {
-          searchBtn.click();
+            searchOption.value = "" 
+            searchBtn.click();
         }
     });
 
     searchBtn.addEventListener('click', async function() {
 
         if(searchBar.value.length > 0) {
-           dataSeedCollection = await fetch('../controller/api/seed-record/search-seed-collection.php?search='+searchBar.value, {
+           dataSeedCollection = await fetch('../controller/api/seed-record/search-seed-collection.php?search='+searchBar.value+"&searchOption="+searchOption.value, {
                method: 'GET',
                header : {
                 'Accept': 'application/json',

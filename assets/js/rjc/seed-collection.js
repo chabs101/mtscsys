@@ -8,6 +8,7 @@
     var searchBar = document.querySelector("#search-input");
     var seedCollectionTbl = document.querySelector("#seedCollectionTbl");
     var displayLimit = document.querySelector("#display_limit");
+    var searchOption = document.querySelector("#search_option");
     var tablePagination = document.querySelector("#table-pagination");
     var nextPageBtn = document.querySelector("#btn-next");
     var prevPageBtn = document.querySelector("#btn-prev");
@@ -32,6 +33,14 @@
 
     });
 
+
+    searchOption.addEventListener("change",() => {
+        if(searchOption.value === "other_detail") {
+            searchBar.setAttribute("placeholder","Search tree_no/barcode");
+            return;
+        }
+        searchBar.setAttribute("placeholder","Search barcode/species_name/botanical_name/location/seedlot_no/region");
+    });
 
     inputAssociatedDefault = '<div class="form-row assoc-input-default">\
                         <div class="col-lg-3">\
@@ -128,7 +137,7 @@
                         <div class="col-lg-2">\
                             <div class="form-group">\
                                 <label class="control-label">Den:</label>\
-                                <input class="form-control form-control-sm den" type="text" name="den[]"/>\
+                                <input class="form-control form-control-sm den" type="number" name="den[]"/>\
                             </div>\
                         </div>\
                         <div class="col-lg-2">\
@@ -288,7 +297,9 @@
     awAllClick = () => {
         searchBar.value = "all";
         searchBtn.click();
-        searchBar.value = "";   
+        searchBar.value = "";  
+        searchOption.value = "";  
+
     }
     searchBar.addEventListener('keyup',(e)=> {
         if(searchBar.value.length == 0 ) {
@@ -390,8 +401,8 @@
                 document.querySelector('#seedCollectionBtn').hidden = true;
                 document.querySelector('#additional_seed_detail').hidden = false;
                 insertSearchCollection(targetElement.getAttribute('data-index-id'));
-                document.querySelectorAll("#seedCollectionForm input, select, textarea").forEach((el)=> {
-                el.setAttribute("disabled",true);
+                document.querySelectorAll("#seedCollectionForm input, #seedCollectionForm select, #seedCollectionForm textarea").forEach((el)=> {
+                console.log(el);
                 });
                 seedcollectionModal.show();
                 return;
@@ -753,7 +764,7 @@
             if(searchBar.value.length > 0) {
                 nextPage = nextPage.length ? nextPage : "";
                 prevPage = prevPage.length ? prevPage : "";
-               dataSeedCollection = await fetch('../controller/api/seed-collection/get-seed-collection.php?search='+searchBar.value+"&limit="+displayLimit.value+nextPage+prevPage, {
+               dataSeedCollection = await fetch('../controller/api/seed-collection/get-seed-collection.php?search='+searchBar.value+"&limit="+displayLimit.value+"&searchOption="+searchOption.value+nextPage+prevPage, {
                    method: 'GET',
                    header : {
                     'Accept': 'application/json',

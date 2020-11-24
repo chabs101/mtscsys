@@ -29,7 +29,16 @@
                                     <div class="card-body">
                                     
                                         <div class="row">
-                                            <div class="col-md-8">
+                                            <div class="col-md-2">
+                                                <label>&nbsp;</label>
+                                                <div class="form-group">
+                                                    <select class="form-control p-0" id="search_option">
+                                                        <option value="">Seed Record</option>
+                                                        <option value="other_detail">Other Detail</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
                                                 <label class="control-label"> PRESS [<b>ALT + 1</b>] TO FOCUS SEARCH BAR</label>
                                                 <div class="input-group">
                                                     <input class="form-control" type="text" placeholder="Search barcode/seed lot no/botanical name" id="search-input"/>

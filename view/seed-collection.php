@@ -39,7 +39,16 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-7">
+                                            <div class="col-md-2">
+                                                <label>&nbsp;</label>
+                                                <div class="form-group">
+                                                    <select class="form-control p-0" id="search_option">
+                                                        <option value="">Seed Collection</option>
+                                                        <option value="other_detail">Other Detail</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
                                                 <label class="control-label"> PRESS [<b>ALT + 1</b>] TO FOCUS SEARCH BAR</label>
                                                 <div class="input-group">
                                                     <input class="form-control" type="text" placeholder="Search barcode/species_name/botanical_name/location/seedlot_no/region" id="search-input"/>
