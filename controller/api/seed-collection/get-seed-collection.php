@@ -19,7 +19,7 @@ if(isset($_GET['search'])) {
 
 	if(isset($_GET['searchOption'])) {
 		if($_GET['searchOption'] == "other_detail") {
-			$search = "AND tree_no='".$_GET['search']."' OR barcode='".$_GET['search']."' ";
+			$search = "AND tree_no='".$_GET['search']."' OR barcode='".$_GET['search']."' OR prefix_id='".$_GET['search']."' OR sc.seed_collection_id='".$_GET['search']."' ";
 			$searchOption = "LEFT JOIN seed_collection_other AS sco ON sco.seed_collection_id = sc.seed_collection_id";
 		}
 	}

@@ -150,8 +150,8 @@
 
     searchBar.addEventListener('keyup',(e)=> {
        if(e.keyCode == 13) {
-            searchOption.value = "" 
             searchBtn.click();
+            // searchOption.value = "" 
         }
     });
 
@@ -238,7 +238,7 @@
     });
     seedRecordOtherModalBtn.addEventListener('click',(el) => {
         seedRecordOtherCollection(el.target.getAttribute('data-seed-collection-id'));
-        console.log(el.target.getAttribute('data-seed-collection-id'))
+        // console.log(el.target.getAttribute('data-seed-collection-id'))
         seedConsigneeModal.show();
     });
 
@@ -317,7 +317,7 @@
                           });
                          return;
                 }
-                console.log(resultValidate);
+                // console.log(resultValidate);
 
 
                 fetch('../controller/api/seed-record/save-seed-record.php', {
@@ -461,11 +461,11 @@
             })
             .then(response => response.json())
             .then((callback) => {
-                console.log(callback.length);
+                // console.log(callback.length);
                 if(callback.length > 0) {
 
                     callback.forEach((data, index)=> {
-                        console.log(data);
+                        // console.log(data);
                         genDiv = document.createElement('div');
                         genDiv.innerHTML = consigneeInputDefault;
                         genDiv.querySelector('.seed_collection_other_id').value = data.seed_collection_other_id ?? "";

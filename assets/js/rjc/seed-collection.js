@@ -82,10 +82,10 @@
                         </div>\
                         <div class="col-lg-2">\
                             <div class="form-group">\
-                                <label class="control-label">Tree No:</label>\
+                                <label class="control-label">Tree No:<b class="color-red">*</b>&nbsp;</label>\
                                 <input class="form-control form-control-sm seed_collection_other_id" type="hidden" name="seed_collection_other_id[]">\
                                 <input class="form-control form-control-sm seed_other_collection_id" type="hidden" name="seed_collection_id[]">\
-                                <input class="form-control form-control-sm tree_no" type="text" maxlength="11" name="tree_no[]">\
+                                <input class="form-control form-control-sm tree_no validate" type="text" maxlength="11" name="tree_no[]" >\
                             </div>\
                         </div>\
                         <div class="col-lg-2">\
@@ -175,7 +175,7 @@
                         <div class="col-lg-3">\
                             <div class="form-group">\
                                 <label class="control-label">Seed Weight(g):</label>\
-                                <input class="form-control form-control-sm seed_weight" type="number" name="seed_weight[]"/>\
+                                <input class="form-control form-control-sm seed_weight validate" type="number" name="seed_weight[]"/>\
                             </div>\
                         </div>\
                         <div class="col-lg-2">\
@@ -210,11 +210,11 @@
             })
             .then(response => response.json())
             .then((callback) => {
-                console.log(callback.length);
+                // console.log(callback.length);
                 if(callback.length > 0) {
 
                     callback.forEach((data, index)=> {
-                        console.log(data);
+                        // console.log(data);
                         genAssocDiv = document.createElement('div');
                         genAssocDiv.innerHTML = inputAssociatedDefault;
                         genAssocDiv.querySelector('.seed_prov_id').value = data.seed_prov_id ?? "";
@@ -252,11 +252,11 @@
             })
             .then(response => response.json())
             .then((callback) => {
-                console.log(callback.length);
+                // console.log(callback.length);
                 if(callback.length > 0) {
 
                     callback.forEach((data, index)=> {
-                        console.log(data);
+                        // console.log(data);
                         genAssocDiv = document.createElement('div');
                         genAssocDiv.innerHTML = inputOtherDefault;
                         genAssocDiv.querySelector('.seed_collection_other_id').value = data.seed_collection_other_id ?? "";
@@ -298,12 +298,13 @@
         searchBar.value = "all";
         searchBtn.click();
         searchBar.value = "";  
-        searchOption.value = "";  
+        // searchOption.value = "";  
 
     }
     searchBar.addEventListener('keyup',(e)=> {
         if(searchBar.value.length == 0 ) {
             awAllClick();
+            searchBar.setAttribute("placeholder","Search barcode/species_name/botanical_name/location/seedlot_no/region");
         }
 
        if(e.keyCode == 13) {
@@ -321,14 +322,14 @@
         document.addEventListener('click', e => {
             var targetElement = e.target || e.srcElement;
             if(e.target.closest('.edit-btn')) {
-                console.log(e.target)
+                // console.log(e.target)
                 
                 document.querySelectorAll("#seedCollectionForm input, select, textarea").forEach((el)=> {
                     el.removeAttribute("disabled");
                 });
                 document.querySelector('#seedCollectionBtn').hidden = false;
                 insertSearchCollection(targetElement.getAttribute('data-index-id'));
-                console.log("from edit" +targetElement.getAttribute('data-index-id'))
+                // console.log("from edit" +targetElement.getAttribute('data-index-id'))
                 
                 document.querySelector('#additional_seed_detail').hidden = true;
                 seedcollectionModal.show();
@@ -402,7 +403,7 @@
                 document.querySelector('#additional_seed_detail').hidden = false;
                 insertSearchCollection(targetElement.getAttribute('data-index-id'));
                 document.querySelectorAll("#seedCollectionForm input, #seedCollectionForm select, #seedCollectionForm textarea").forEach((el)=> {
-                console.log(el);
+                // console.log(el);
                 });
                 seedcollectionModal.show();
                 return;
@@ -446,7 +447,7 @@
         document.addEventListener('click', e => {
             var targetElement = e.target || e.srcElement;
             if(e.target.closest('.remove-assoc-btn')) {
-                console.log(e.target.localName);
+                // console.log(e.target.localName);
                 if(document.querySelectorAll('.remove-assoc-btn').length  > 1) {
 
                     if(e.target.localName != 'button') {
@@ -473,7 +474,7 @@
         document.addEventListener('click', e => {
             var targetElement = e.target || e.srcElement;
             if(e.target.closest('.rmv-other-btn')) {
-                console.log(e.target.localName);
+                // console.log(e.target.localName);
                 if(document.querySelectorAll('.rmv-other-btn').length  > 1) {
 
                     if(e.target.localName != 'button') {
@@ -522,6 +523,45 @@
             for(var i in tobeDeleteSeedOtherData) {
                 formData.append("tobeDelete_id[]",tobeDeleteSeedOtherData[i]);
             }
+
+
+                seedcollectionOtherForm = document.querySelector("#seedcollectionOtherForm");
+                validateInput = {};
+                constraints = {};
+                seedcollectionOtherForm.querySelectorAll(".validate").forEach((el,index) => {
+                    var searchValidate = el.getAttribute('name').replace("[","["+index);
+                    validateInput[searchValidate] = el.value;
+                });
+
+                for(var con in validateInput) {
+                constraints[con] = {presence : {allowEmpty:false}}
+                }
+                
+                resultValidate = validate(validateInput,constraints); //true or false
+
+                if(resultValidate) {
+                    resultMessage = "";
+                    for(var index in resultValidate) {
+                        resultMessage += resultValidate[index][0] +" \n ";
+                        removeArr = index.split("[",1);
+                        document.querySelectorAll("."+removeArr[0]).forEach(el => {
+                            if(el.value == "") {
+                                el.classList.add("is-invalid");    
+                            }
+                        });
+                    }
+
+                         swal({
+                            position: 'center',
+                            icon: 'warning',
+                            title: "Ooops !",
+                            text: resultMessage,
+                            showConfirmButton: false,
+                            timer: 1500
+                          });
+                         return;
+                }
+                // console.log(resultValidate);
 
             fetch('../controller/api/seed-collection/save-seed-other-detail.php', {
                method: 'POST',
@@ -700,7 +740,7 @@
                           });
                          return;
                 }
-                console.log(resultValidate);
+                // console.log(resultValidate);
 
                 if(submitted_seed_collection) {
                     console.log("already submitted please wait");
@@ -733,7 +773,7 @@
                         });
                         seedcollectionModal.dispose();
                         console.log("submitted successfully");
-                        console.log("submitted status false");
+                        // console.log("submitted status false");
                         submitted_seed_collection = false;
                         return;
                      }

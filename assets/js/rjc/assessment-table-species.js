@@ -148,7 +148,7 @@
                           });
                          return;
                 }
-                console.log(resultValidate);
+                // console.log(resultValidate);
 
 
                 fetch('../controller/api/assessment-species/save-assessment-species.php', {

@@ -49,12 +49,12 @@
         document.addEventListener('click', e => {
             var targetElement = e.target || e.srcElement;
             if(e.target.closest('.edit-btn')) {
-                console.log(e.target)
+                // console.log(e.target)
                 
                 document.querySelectorAll("#roleForm input, select").forEach((el)=> {
                     el.removeAttribute("disabled");
                 });
-                console.log("from edit" +targetElement.getAttribute('data-index-id'))
+                // console.log("from edit" +targetElement.getAttribute('data-index-id'))
                 loadEdit(targetElement.getAttribute('data-index-id'));                
                 roleModal.show();
                 return;
@@ -94,7 +94,7 @@
                           });
                          return;
                 }
-                console.log(resultValidate);
+                // console.log(resultValidate);
 
 
                 fetch('../controller/api/setup-role/save-role.php', {

@@ -157,7 +157,7 @@
                           });
                          return;
                 }
-                console.log(resultValidate);
+                // console.log(resultValidate);
 
 
                 fetch('../controller/api/seed-detailed-information/save-seed-collection-detailed-information.php', {
