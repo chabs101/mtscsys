@@ -27,7 +27,7 @@ if(trim($_POST['seed_record_id']) == "") {
 									'".($_POST['fumigation_method'] ?? "")."',
 									'".($_POST['collector'] ?? "")."',
 									'".($_POST['collector_no'] ?? "")."',
-									'".($_POST['collection_date'] ?? "")."',
+									'".( (!empty($_POST['collection_date'])) ? $_POST['collection_date'] : "00-00-0000" )."',
 									'".($_POST['project'] ?? "")."',
 									'".($_POST['identified_by'] ?? "")."',
 									'".($_POST['seed_condition'] ?? "")."',

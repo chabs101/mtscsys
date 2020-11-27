@@ -1,5 +1,6 @@
 <?php
 require 'Bcrypt.php';
+require 'Helper.php';
 date_default_timezone_set('Asia/Manila');
 
 class DBConn {

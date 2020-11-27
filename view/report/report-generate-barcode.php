@@ -121,7 +121,7 @@ $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
 							$trCounter++;
 						?>
 
-						<div class="text-center" style="float:left;position: inline-block;border:1px solid #000;height: auto;width: 160px;font-size:15px;padding:3px;margin-left:15px;page-break-inside:avoid;">
+						<div class="text-center" style="float:left;position: inline-block;border:1px dashed #000;height: auto;width: 160px;font-size:15px;padding:3px;margin-left:15px;page-break-inside:avoid;">
 						<span class="text-left"><?= $_SESSION['data']['seedName'][$i] ?? "n/a"?></span><br>
 						<img class="barcode" src="data:image/png;base64,<?= base64_encode($generator->getBarcode(( $_SESSION['data']['ids'][$i] ), $generator::TYPE_CODE_128))?>"/>
 						<br><span><?= $_SESSION['data']['ids'][$i] ?? "n/a"?></span>

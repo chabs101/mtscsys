@@ -48,7 +48,7 @@
                         <div class="col-lg-2">\
                             <div class="form-group">\
                                 <label class="control-label">Barcode</label>\
-                                <input class="form-control form-control-sm barcode" type="text" name="barcode[]"/>\
+                                <input class="form-control form-control-sm barcode" type="text" disabled="true" name="barcode[]"/>\
                             </div>\
                         </div>\
                         <div class="col-lg-2">\
@@ -470,7 +470,7 @@
                         genDiv.innerHTML = consigneeInputDefault;
                         genDiv.querySelector('.seed_collection_other_id').value = data.seed_collection_other_id ?? "";
                         genDiv.querySelector('.seed_collection_id').value = data.seed_collection_id ?? "";
-                        genDiv.querySelector('.consignee_date').value = moment(data.consignee_date).format('YYYY-MM-D');
+                        genDiv.querySelector('.consignee_date').value = data.consignee_date ?? "";
                         genDiv.querySelector('.consignee').value    = data.consignee ?? "";
                         genDiv.querySelector('.released').value     = data.released ?? "";
                         genDiv.querySelector('.balance').value      = data.balance ?? "";

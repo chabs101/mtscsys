@@ -9,15 +9,18 @@ $arr = [];
 
 // 	echo json_encode([$_POST]);
 // return;
-if(isset($_POST['consignee_date']) || isset($_POST['tree_no']) || isset($_POST['consignee']) || isset($_POST['released']) || isset($_POST['balance']) ) {
+if(isset($_POST['seed_collection_other_id']) ) {
 
 	for($i=0; $i<count($_POST['seed_collection_other_id']); $i++) {
 		// if(trim($_POST['seed_collection_other_id'][$i]) == "") {
+			$getTreeNo = $db->select("seed_collection_other","*","isdeleted=0 AND seed_collection_other_id='".$_POST['seed_collection_other_id'][$i]."' ");
+			$getTreeNo = $db->result();
+
+			$barcode = $_POST['seed_collection_other_id'][$i]."-".$getTreeNo[0]['tree_no'];
 
 			$result = $db->rawQuery("UPDATE seed_collection_other SET 
 											seed_collection_other_id='".$_POST['seed_collection_other_id'][$i]."',	
-											tree_no='".($_POST['tree_no'][$i] ?? "")."',
-											barcode='".($_POST['barcode'][$i] ?? "")."',	
+											barcode='".($barcode ?? "")."',	
 											collection='".($_POST['collection'][$i] ?? "")."',	
 											mc='".($_POST['mc'][$i] ?? "")."',	
 											purity='".($_POST['purity'][$i] ?? "")."',	

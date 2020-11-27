@@ -227,7 +227,7 @@
                     // console.log(data);
                         newRow = tableRef.insertRow(tableRef.rows.length);
                         newRowHtml = '<tr>\
-                                    <td><input type="checkbox" class="other_checkbox_bcode" name="prefix_id[]" value="'+data.tree_no+'" data-name="" /></td>\
+                                    <td><input type="checkbox" class="other_checkbox_bcode" name="prefix_id[]" value="'+data.barcode+'" data-name="'+data.tree_no+'" /></td>\
                                     <td>'+(data.tree_no ?? "")+'</td>\
                                     <td>'+(data.species_name ?? "n/a")+'</td>\
                                     </tr>';
