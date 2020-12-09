@@ -232,7 +232,7 @@
             .then((callback) => {
                 // console.log(callback.length);
                 if(callback.length > 0) {
-                    if(!(callback[0].success)) {
+                    if(!callback[0].success) {
                          swal({
                             position: 'center',
                             icon: 'warning',
