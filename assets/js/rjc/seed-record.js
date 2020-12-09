@@ -221,7 +221,7 @@
         var targetElement = e.target || e.srcElement;
 
         if(e.target.closest('.print-btn')) {
-           await fetch("../controller/report/report-generate-seed-record?search="+targetElement.getAttribute("data-seed-collection-id"), {
+           await fetch("../controller/report/check-generate-seed-record?search="+targetElement.getAttribute("data-seed-collection-id"), {
                method: 'GET',
                header : {
                 'Accept': 'application/json',
@@ -230,7 +230,7 @@
             })
             .then(response => response.json())
             .then((callback) => {
-                // console.log(callback.length);
+                console.log(callback); 
                 if(callback.length > 0) {
                     if(!callback[0].success) {
                          swal({
@@ -246,9 +246,10 @@
                     document.querySelector('#printModal iframe')
                     .setAttribute("src","../controller/report/report-generate-seed-record?search="+targetElement.getAttribute("data-seed-collection-id"));
                     printModal.show();
-                    return;
+
                 }
             });
+
             return;
         }
 
