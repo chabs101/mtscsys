@@ -29,7 +29,7 @@ if(isset($_POST['seed_collection_other_id']) ) {
 											room='".($_POST['room'][$i] ?? "")."',	
 											cont_no='".($_POST['cont_no'][$i] ?? 0)."',	
 											bag_no='".($_POST['bag_no'][$i] ?? 0)."',		
-											consignee_date='".(!empty($_POST['consignee_date'][$i]) ? $_POST['consignee_date'][$i] : "00-00-0000")."',	
+											consignee_date='".(!empty($_POST['consignee_date'][$i]) ? $_POST['consignee_date'][$i] : "00-00-0000")."',
 											consignee='".($_POST['consignee'][$i] ?? "")."',	
 											released='".($_POST['released'][$i] ?? "")."',	
 											balance='".($_POST['balance'][$i] ?? "")."',

@@ -169,7 +169,7 @@ $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
 				</td>
 				
 				<td colspan="1" class="text-left b-r-n">Storage</td>
-				<td colspan="4" class="text-left b-l-n">: <?=$_SESSION['data']['seed_record_collection_result'][0]['storage'] ?? "n/a";?></td>
+				<td colspan="4" class="text-left b-l-n">: <?=$_SESSION['data']['seed_record_collection_result'][0]['storage'] != "" ? $_SESSION['data']['seed_record_collection_result'][0]['storage'] : "n/a";?></td>
 			</tr>
 			<tr>
 				<td colspan="5" class="b-n"></td>

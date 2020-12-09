@@ -217,13 +217,38 @@
 
     });
 
-    document.addEventListener('click', e => {
+    document.addEventListener('click', async(e) => {
         var targetElement = e.target || e.srcElement;
 
         if(e.target.closest('.print-btn')) {
-            document.querySelector('#printModal iframe')
-            .setAttribute("src","../controller/report/report-generate-seed-record?search="+targetElement.getAttribute("data-seed-collection-id"));
-            printModal.show();
+           await fetch("../controller/report/report-generate-seed-record?search="+targetElement.getAttribute("data-seed-collection-id"), {
+               method: 'GET',
+               header : {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+               }
+            })
+            .then(response => response.json())
+            .then((callback) => {
+                // console.log(callback.length);
+                if(callback.length > 0) {
+                    if(!(callback[0].success)) {
+                         swal({
+                            position: 'center',
+                            icon: 'warning',
+                            title: "Ooops!",
+                            text: callback[0].message,
+                            showConfirmButton: false,
+                            timer: 1500
+                          });
+                        return;
+                    }
+                    document.querySelector('#printModal iframe')
+                    .setAttribute("src","../controller/report/report-generate-seed-record?search="+targetElement.getAttribute("data-seed-collection-id"));
+                    printModal.show();
+                    return;
+                }
+            });
             return;
         }
 
@@ -286,9 +311,6 @@
                         presence : {allowEmpty:false}
                     },
                     seed_condition :{
-                        presence : {allowEmpty:false}
-                    },
-                    storage :{
                         presence : {allowEmpty:false}
                     },
                     quantity :{

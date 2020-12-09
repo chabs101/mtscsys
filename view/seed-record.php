@@ -329,7 +329,7 @@
             <div class="form-row">
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <label class="control-label">Storage :<b class="color-red">*</b>&nbsp;</label>
+                        <label class="control-label">Storage :&nbsp;</label>
                         <select class="form-control" type="text" id="storage" name="storage">
                             <option value="">-</option>                            
                             <option value="18c to 22c">18c to 22c</option>                            
