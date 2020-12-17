@@ -454,7 +454,7 @@
             document.querySelector("#fumigation_method").value           = (editRow.fumigation_method ?? "");
             document.querySelector("#collector").value                   = (editRow.collector ?? "");
             document.querySelector("#collector_no").value                = (editRow.collector_no ?? 0);
-            document.querySelector("#collection_date").value             = moment(editRow.collection_date).format('YYYY-MM-D');
+            document.querySelector("#collection_date").value             = (editRow.collection_date ?? "");
             document.querySelector("#project").value                     = (editRow.project ?? "");
             document.querySelector("#identified_by").value               = (editRow.identified_by ?? "");
             document.querySelector("#seed_condition").value              = (editRow.seed_condition ?? "");
