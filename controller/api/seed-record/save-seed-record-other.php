@@ -7,16 +7,17 @@ $dbDelete = new DBconn();
 
 $arr = [];
 
-// 	echo json_encode([$_POST]);
+// echo json_encode([$_POST]);
 // return;
 if(isset($_POST['seed_collection_other_id']) ) {
 
 	for($i=0; $i<count($_POST['seed_collection_other_id']); $i++) {
 		// if(trim($_POST['seed_collection_other_id'][$i]) == "") {
-			$getTreeNo = $db->select("seed_collection_other","*","isdeleted=0 AND seed_collection_other_id='".$_POST['seed_collection_other_id'][$i]."' ");
-			$getTreeNo = $db->result();
-
-			$barcode = $_POST['seed_collection_other_id'][$i]."-".$getTreeNo[0]['tree_no'];
+			$getprefix = $db->select("seed_collection","*","isdeleted=0 AND seed_collection_id='".$_POST['seed_collection_id'][$i]."' ");
+			$getprefix = $db->result();
+			$counter = $i;
+			$counter++;
+			$barcode = $getprefix[0]['prefix_id']."-".$counter;
 
 			$result = $db->rawQuery("UPDATE seed_collection_other SET 
 											seed_collection_other_id='".$_POST['seed_collection_other_id'][$i]."',	
