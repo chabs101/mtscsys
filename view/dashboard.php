@@ -9,7 +9,14 @@
           
         <!-- END META SECTION -->
         <?php include('inc_common/main_css.php');?>        
-
+        <style>
+            .bg-secondary {
+                background:linear-gradient(#0000008f,#007bff63), url(../assets/img/P5310007.jpg) !important;
+                background-repeat: no-repeat !important;
+                background-position: top !important;
+                background-size: 100%, 100% !important;
+            }
+        </style>
     </head>
 <!--         <audio id="notifalert">
             <source src="" type="audio/mpeg">
@@ -17,7 +24,7 @@
 <body>
         <?php include('inc_common/top_navigation.php');?>        
 
-        <div id="layoutSidenav">
+        <div id="layoutSidenav" class="bg-secondary">
             <?php include('inc_common/page_sidebar.php');?>        
 
             <div id="layoutSidenav_content">

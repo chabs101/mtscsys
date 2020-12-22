@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="./assets/css/fontawesome/css/all.css"/>
         <style>
             .bg-secondary {
-                background:linear-gradient(#0000008f,#007bff63), url(./assets/img/bg.jpeg) !important;
+                background:linear-gradient(#0000008f,#007bff63), url(./assets/img/P5310007.jpg) !important;
                 background-repeat: no-repeat !important;
                 background-position: top !important;
                 background-size: 100%, 100% !important;
