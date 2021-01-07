@@ -28,7 +28,7 @@ if(trim($_POST['user_id']) == "") {
 		$imgname = $_FILES['image_url']['name'];
 		$imgpath = pathinfo($imgname);
 		
-		$default_img_name = "pbvc_".date('Y-m-d')."_".$_POST['username'];
+		$default_img_name = "mtscsys_".date('Y-m-d')."_".$_POST['username'];
 		$ext = $imgpath['extension'];
 		$temp_name = $_FILES['image_url']['tmp_name'];
 		$path_imgname_ext = $target_dir.$default_img_name.'.'.$ext;
@@ -82,7 +82,7 @@ if(trim($_POST['user_id']) == "") {
 		$imgname = $_FILES['image_url']['name'];
 		$imgpath = pathinfo($imgname);
 		
-		$default_img_name = "pbvc_".date('Y-m-d')."_".$_POST['username'];
+		$default_img_name = "mtscsys_".date('Y-m-d')."_".$_POST['username'];
 		$ext = $imgpath['extension'];
 		$temp_name = $_FILES['image_url']['tmp_name'];
 		$path_imgname_ext = $target_dir.$default_img_name.'.'.$ext;
