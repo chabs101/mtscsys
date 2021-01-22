@@ -2,7 +2,7 @@
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <a class="navbar-brand d-xs-none d-flex" href="./dashboard" style="width:auto;">
                 <p class="m-0">
-                    Mindanao Tree Seed Center <br> <i style="color:#12ff3a;"> SEED INFORMATION & DATABASE SYSTEM </i>
+                    Mindanao Tree Seed Center <br> <span style="color:#12ff3a;"> SEED INFORMATION & DATABASE SYSTEM </span>
                 </p>
             </a>
             <button class="btn btn-link navbar-brand d-none d-xs-show sidebarToggle" id="sidebarToggle" href="#"><i class="fa fa-bars"></i></button>
