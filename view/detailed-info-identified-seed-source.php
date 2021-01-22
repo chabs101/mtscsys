@@ -268,9 +268,9 @@
 
 <!-- Modals end -->
 
-                <?php include('inc_common/footer.php'); ?>
             </div>
         </div>
+        <?php include('inc_common/main_footer.php'); ?>
         <?php include('inc_common/main_js.php');?>        
         <script src="../assets/js/rjc/detailed-information.js"></script>
 

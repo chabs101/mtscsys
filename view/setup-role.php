@@ -3,7 +3,7 @@
 <html lang="en">
     <head>        
         <!-- META SECTION -->
-        <title>Seed Collection | <?php include('inc_common/title_name.php');?></title>
+        <title>Setup Role | <?php include('inc_common/title_name.php');?></title>
           
         <!-- END META SECTION -->
         <?php include('inc_common/main_css.php');?>        
@@ -136,9 +136,9 @@
 
 <!-- Modals end -->
 
-                <?php include('inc_common/footer.php'); ?>
             </div>
         </div>
+        <?php include('inc_common/main_footer.php'); ?>
         <?php include('inc_common/main_js.php');?>        
         <script src="../assets/js/rjc/setup-role.js"></script>
         <script>

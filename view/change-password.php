@@ -59,9 +59,9 @@
 <!-- MODAL -->
 
 <!-- MODAL END -->
-                <?php include('inc_common/footer.php'); ?>
             </div>
         </div>
+        <?php include('inc_common/main_footer.php'); ?>
         <?php include('inc_common/main_js.php');?>  
         <script>
             changePasswordForm = document.querySelector("#changePasswordForm");       

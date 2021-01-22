@@ -1,17 +1,22 @@
 <?php
+include 'autoload.php';
 require 'Bcrypt.php';
 require 'Helper.php';
 date_default_timezone_set('Asia/Manila');
 
 class DBConn {
-	private $type 	= 'localhost';
-	private $user 	= 'root';
+	private $type 	= '';
+	private $user 	= '';
 	private $pass 	= '';
-	private $dbname = 'mtscdb';
+	private $dbname = '';
 	public $conn 	= '';
 	private $result = '';
 
 	public function __construct() {
+		$this->type 	= $_ENV['database_type'];
+		$this->user 	= $_ENV['database_user'];
+		$this->dbname 	= $_ENV['database_name'];
+		$this->pass 	= $_ENV['database_password'];
 		$this->db();
 	}
 
@@ -39,11 +44,14 @@ class DBConn {
 			$decrypt = new Bcrypt();
 			if($decrypt->verify($password,$row['password'])) {
 
-				$_SESSION['fullname'] = $row['first_name'] .' '. $row['last_name'];
+				$_SESSION[$_ENV['database_name'].'-fullname'] = $row['first_name'] .' '. $row['last_name'];
 				$_SESSION['first_name'] = $row['first_name'];
 				$_SESSION['user'] = [
 									"id" 		=> $row['user_id'],
 									"first_name"=> $row['first_name'],
+									"last_name"	=> $row['last_name'],
+									"username"	=> $row['username'],
+									"gender"	=> $row['gender'],
 									"fullname" 	=> $row['first_name'] .' '. $row['last_name'],
 									"image_url" => $row['image_url'],
 									"role" 		=> $row['role_id']

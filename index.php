@@ -4,7 +4,7 @@
     $db = new DBconn();
 	session_start();
     $db->checkRememberToken();
-	if(isset($_SESSION['fullname'])) {
+	if(isset($_SESSION[$_ENV["database_name"].'-fullname'])) {
 		header('Location:view/dashboard');
 	}
 
