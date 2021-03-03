@@ -44,6 +44,7 @@
                                                 <div class="form-group">
                                                     <select class="form-control p-0" id="search_option">
                                                         <option value="">Seed Collection</option>
+                                                        <option value="region">Region</option>
                                                         <option value="other_detail">Other Detail</option>
                                                     </select>
                                                 </div>

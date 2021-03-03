@@ -33,7 +33,12 @@
                     <div class="container-fluid">
                         <h5 class="mb-0">&nbsp;</h5>
                         <div class="row">
-                            
+                            <div class="offset-md-4 col-md-4 offset-md-4">
+                                <img src="../assets/img/mtsc_logo.png" style="margin:0 auto;">
+                            </div>
+                            <div class="col-md-12" style="text-align: center;"><br><br>
+                                <h1 style="color:#00ff2b;text-shadow: 4px 2px black;">SEED TRACKING AND INFORMATION <br>DATABASED SYSTEM</h1>
+                            </div>
                         </div>        
                     </div>
                 </main>
