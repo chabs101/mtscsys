@@ -3,7 +3,7 @@
                         <div class="row">
                             <div class="col-md-6"><br>
                                 <div class="text-muted" style="font-size: 14px;">
-                                    PCAARRD funded project entitled <br>
+                                    PCAARRD funded project titled <br>
                                     <p style="padding-left:15px;">
                                     "Forest Tree Seed Quality Enhancement and Development <br>
                                      of Mindanao Tree Seed Center - Seed Tracking and Information"
